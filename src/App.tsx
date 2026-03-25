@@ -11,8 +11,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [time, setTime] = useState('--:--');
-  const [timeZone, setTimeZone] = useState('GMT+1 · Jönköping, Sweden');
+
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showProjects, setShowProjects] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,21 +37,7 @@ export default function App() {
     };
   }, []);
 
-  // Clock
-  useEffect(() => {
-    const tick = () => {
-      const t = new Date().toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/Stockholm',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false,
-      });
-      setTime(t);
-    };
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, []);
+
 
   // Cursor
   useEffect(() => {
@@ -146,7 +131,6 @@ export default function App() {
       onComplete: () => {
         gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out' });
         gsap.to('.hero-meta', { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out', delay: 0.15 });
-        gsap.to('.clock-block', { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out', delay: 0.3 });
       },
     });
 
@@ -375,11 +359,7 @@ export default function App() {
               />
             </div>
             
-            <div className="hero-overlays absolute inset-0 p-12 flex flex-col justify-between pointer-events-none z-[10]">
-              <div className="clock-block text-right opacity-0 translate-y-4">
-                <div className="clock-dig font-[var(--font-swifter)] font-light text-[clamp(44px,5vw,68px)] tracking-[0.03em] text-[var(--txt)] tabular-nums leading-none drop-shadow-md">{time}</div>
-                <div className="clock-tz font-[var(--font-syne)] text-[11px] tracking-[0.16em] uppercase text-[var(--txt3)] mt-[6px]">{timeZone}</div>
-              </div>
+            <div className="hero-overlays absolute inset-0 p-12 flex flex-col justify-end pointer-events-none z-[10]">
               <div className="font-[var(--font-syne)] text-[11px] tracking-[0.1em] text-[var(--txt3)] text-right opacity-0 translate-y-4">© 2026 Rishit Bhalja</div>
             </div>
           </div>

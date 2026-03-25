@@ -339,7 +339,7 @@ export default function App() {
             </p>
             <div className="hero-meta flex items-center gap-7 opacity-0 translate-y-4">
 
-              <a href="#contact" className="font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.14em] uppercase text-[var(--txt)] relative transition-all duration-300 hover:text-[var(--acc)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">
+              <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-semibold tracking-[0.12em] uppercase text-[#080808] bg-[var(--acc)] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[#d6ff8a] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(255,99,33,0.15)] hover:shadow-[0_8px_20px_rgba(214,255,138,0.25)]">
                 Let's Talk
               </a>
             </div>

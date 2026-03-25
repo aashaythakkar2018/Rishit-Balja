@@ -297,47 +297,46 @@ export default function App() {
           rishit<em className="text-[var(--acc)] not-italic">.</em>
         </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-
           <li><a href="#contact" data-nav="contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
           <li><button onClick={() => setShowProjects(true)} data-nav="projects" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
+          <li className="relative nav-cv z-[5000]">
+            <button 
+              onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
+              className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0"
+            >
+              CV
+            </button>
+            <AnimatePresence>
+              {isCVDropdownOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3, ease: [0.77, 0, 0.175, 1] }}
+                  className="absolute top-[calc(100%+8px)] right-0 w-[150px] bg-[var(--bg)] border border-[var(--bdr)] rounded-[2px] shadow-[0_8px_30px_rgba(8,8,8,0.08)] flex flex-col py-[6px] origin-top-right overflow-hidden"
+                >
+                  <a 
+                    href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" 
+                    target="_blank" 
+                    onClick={() => setIsCVDropdownOpen(false)}
+                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                  >
+                    English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                  </a>
+                  <div className="h-[1px] bg-[var(--bdr)] mx-4 my-[2px]"></div>
+                  <a 
+                    href="/Rishit-CV-Swedish.pdf" 
+                    target="_blank" 
+                    onClick={() => setIsCVDropdownOpen(false)}
+                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                  >
+                    Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </li>
         </ul>
-        <div className="relative nav-cv z-[5000]">
-          <button 
-            onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
-            className="font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--bg)] bg-[var(--acc)] px-5 py-[9px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] flex items-center gap-[6px] cursor-pointer border-none"
-          >
-            CV <span className={`text-[9px] transition-transform duration-300 ${isCVDropdownOpen ? 'rotate-180' : ''}`}>▲</span>
-          </button>
-          <AnimatePresence>
-            {isCVDropdownOpen && (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3, ease: [0.77, 0, 0.175, 1] }}
-                className="absolute top-[calc(100%+8px)] right-0 w-[150px] bg-[var(--bg)] border border-[var(--bdr)] rounded-[2px] shadow-[0_8px_30px_rgba(8,8,8,0.08)] flex flex-col py-[6px] origin-top-right overflow-hidden"
-              >
-                <a 
-                  href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" 
-                  target="_blank" 
-                  onClick={() => setIsCVDropdownOpen(false)}
-                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
-                >
-                  English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
-                </a>
-                <div className="h-[1px] bg-[var(--bdr)] mx-4 my-[2px]"></div>
-                <a 
-                  href="/Rishit-CV-Swedish.pdf" 
-                  target="_blank" 
-                  onClick={() => setIsCVDropdownOpen(false)}
-                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
-                >
-                  Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
-                </a>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </nav>
 
       {/* HERO */}

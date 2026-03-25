@@ -116,6 +116,7 @@ const projects = [
 export default function ProjectsPage({ onBack }: { onBack: () => void }) {
   const pageRef = useRef<HTMLDivElement>(null);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
@@ -278,7 +279,8 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
                 <img
                   src={proj.cover}
                   alt={proj.title}
-                  className="w-full h-auto object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] hover:scale-[1.03]"
+                  className="w-full h-auto object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] hover:scale-[1.03] cursor-zoom-in relative z-10"
+                  onClick={() => setSelectedImage(proj.cover)}
                 />
               </motion.div>
             </motion.div>
@@ -337,7 +339,8 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
                     <img
                       src={img}
                       alt={`${proj.title} ${i + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.05]"
+                      className="w-full h-full object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.05] cursor-zoom-in relative z-10"
+                      onClick={() => setSelectedImage(img)}
                     />
                   </motion.div>
                 </motion.div>
@@ -358,6 +361,29 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
           ← Back to Home
         </button>
       </footer>
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-[99999] bg-[rgba(10,10,10,0.95)] flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+          >
+            <motion.img
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 10 }}
+              transition={{ ease: [0.77, 0, 0.175, 1], duration: 0.4 }}
+              src={selectedImage}
+              alt="Enlarged view"
+              className="max-w-full max-h-full object-contain shadow-2xl rounded-[4px]"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }

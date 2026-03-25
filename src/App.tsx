@@ -330,7 +330,7 @@ export default function App() {
             <p className="hero-eyebrow font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] mb-[2.2rem] flex items-center gap-3 opacity-0 translate-y-4 before:content-[''] before:w-[22px] before:h-[1px] before:bg-[var(--acc)]">
               <span>01</span> — Turning attention into intent—and intent into measurable outcomes.
             </p>
-            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-bold text-[clamp(40px,5vw,72px)] leading-[0.88] uppercase tracking-[-0.01em]">
+            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-semibold text-[clamp(32px,4vw,60px)] leading-[0.88] uppercase tracking-[-0.01em]">
               <span className="lw block overflow-hidden"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="digital experiences">digital experiences</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="where user desire">where user desire</span></span>

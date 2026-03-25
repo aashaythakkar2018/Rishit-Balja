@@ -756,7 +756,7 @@ export default function App() {
           className="footer py-8 flex flex-col items-center gap-5 text-center"
         >
           <div className="f-logo font-[var(--font-syne)] font-extrabold text-[14px] tracking-[0.07em] lowercase">rishitbhalja</div>
-          <div className="f-copy text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — UX Designer, Jönköping, Sweden</div>
+          <div className="f-copy text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — UX Designer</div>
           <nav className="f-socials flex gap-8">
             <a href="https://www.linkedin.com/in/rishitbhalja/" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full" target="_blank">LinkedIn</a>
             <a href="mailto:rishitbhalja@gmail.com" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full">Mail</a>

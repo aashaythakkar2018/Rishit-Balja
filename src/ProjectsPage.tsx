@@ -353,7 +353,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
       {/* FOOTER */}
       <footer className="py-10 px-6 md:px-12 flex flex-col items-center gap-4 text-center border-t border-[var(--bdr)]">
         <div className="font-[var(--font-syne)] font-extrabold text-[14px] tracking-[0.07em] lowercase">rishitbhalja</div>
-        <div className="text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — Experience Designer, Jönköping, Sweden</div>
+        <div className="text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — Experience Designer</div>
         <button
           onClick={onBack}
           className="mt-2 font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--bg)] bg-[var(--acc)] px-6 py-[10px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] hover:-translate-y-[2px]"

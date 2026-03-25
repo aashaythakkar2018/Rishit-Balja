@@ -344,9 +344,7 @@ export default function App() {
       <section id="home" className="min-h-screen pt-[68px] relative overflow-hidden">
         <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-68px)]">
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
-            <p className="hero-eyebrow font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] mb-[2.2rem] flex items-center gap-3 opacity-0 translate-y-4 before:content-[''] before:w-[22px] before:h-[1px] before:bg-[var(--acc)]">
-              <span>01</span> — Turning attention into intent—and intent into measurable outcomes.
-            </p>
+
             <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-bold text-[clamp(40px,5vw,72px)] leading-[0.88] uppercase tracking-[-0.01em]">
               <span className="lw block overflow-hidden"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="digital experiences">digital experiences</span></span>
@@ -406,15 +404,7 @@ export default function App() {
       {/* PROJECTS */}
       <section id="projects" className="py-28 border-t border-[var(--bdr)] overflow-hidden">
         <div className="proj-header px-6 md:px-12 flex flex-col items-center text-center mb-14 gap-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
-            className="sec-lbl font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] flex items-center gap-[10px] mb-[0.8rem]"
-          >
-            <em className="text-[var(--acc)] not-italic">02</em> The Projects
-          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -484,7 +474,7 @@ export default function App() {
       {/* CONTACT */}
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
-          <div className="sec-lbl fu font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] flex items-center gap-[10px] mb-[0.8rem]"><em className="text-[var(--acc)] not-italic">05</em> Get In Touch</div>
+
           <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-bold text-[clamp(60px,8vw,118px)] leading-[0.86] uppercase tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}

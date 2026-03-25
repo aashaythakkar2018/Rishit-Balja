@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Switzer-Variable';
+  src: url('/switzer-fonts/Switzer-Variable.woff2') format('woff2'),
+       url('/switzer-fonts/Switzer-Variable.woff') format('woff'),
+       url('/switzer-fonts/Switzer-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Switzer-VariableItalic';
+  src: url('/switzer-fonts/Switzer-VariableItalic.woff2') format('woff2'),
+       url('/switzer-fonts/Switzer-VariableItalic.woff') format('woff'),
+       url('/switzer-fonts/Switzer-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
+@theme {
+  --font-swifter: "Switzer-Variable", sans-serif;
+  --font-syne: "Switzer-Variable", sans-serif;
+  --font-dm-sans: "Switzer-Variable", sans-serif;
+  --font-barlow-condensed: "Switzer-Variable", sans-serif;
+}
+
+:root {
+  --bg: #FDFCF8;
+  --bg2: #F5F5F0;
+  --bg3: #EBEBE6;
+  --txt: #080808;
+  --txt2: #4A4A4A;
+  --txt3: #8A8A8A;
+  --acc: #FF6321;
+  --acc2: rgba(255, 99, 33, 0.10);
+  --acc3: rgba(255, 99, 33, 0.22);
+  --bdr: rgba(8, 8, 8, 0.08);
+  --bdr2: rgba(8, 8, 8, 0.15);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --easeOut: cubic-bezier(0.22, 1, 0.36, 1);
+  --easeIn: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    cursor: none;
+  }
+  body {
+    font-family: "Switzer-Variable", sans-serif;
+    font-weight: 300;
+    color: var(--txt);
+    background: var(--bg);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Custom Utilities from the provided code */
+.nav-active::after {
+  width: 100% !important;
+  opacity: 0.5;
+}
+
+.clip-reveal {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.1s var(--easeOut);
+}
+.clip-reveal.vis {
+  clip-path: inset(0 0% 0 0);
+}
+
+.fu {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity 0.95s var(--easeOut), transform 0.95s var(--easeOut);
+}
+.fu.vis {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.split-head {
+  overflow: hidden;
+  display: block;
+}
+.split-head .ch {
+  display: inline-block;
+  transform: translateY(105%);
+  transition: transform 0.7s var(--easeOut);
+}
+.split-head.vis .ch {
+  transform: translateY(0);
+}
+
+.count-num {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(200, 245, 118, 0.5);
+  }
+  60% {
+    box-shadow: 0 0 0 10px rgba(200, 245, 118, 0);
+  }
+}
+
+@keyframes scl {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(0.65);
+  }
+}
+
+@keyframes tick {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drag {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Loader Animations */
+@keyframes lw {
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes lb {
+  to {
+    right: 0;
+  }
+}

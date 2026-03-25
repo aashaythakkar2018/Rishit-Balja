@@ -354,7 +354,7 @@ export default function App() {
               <span className="lw block overflow-hidden"><span className="li block acc-word text-[var(--acc)]" data-word="meets business value.">meets business value.</span></span>
             </h1>
             <p className="hero-sub text-[14px] font-light text-[var(--txt2)] leading-[1.8] max-w-[480px] mt-8 mb-10 opacity-0 translate-y-4">
-              Experience Designer with 5+ years shaping products across logistics, startups, and marketplaces—driving subscription growth, adoption, and scalable platform thinking.
+              Turning attention into intent—and intent into measurable outcomes.
             </p>
             <div className="hero-meta flex items-center gap-7 opacity-0 translate-y-4">
               <span className="loc-txt font-[var(--font-syne)] text-[11px] tracking-[0.14em] uppercase text-[var(--txt3)] flex items-center gap-2">

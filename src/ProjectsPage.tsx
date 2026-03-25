@@ -293,12 +293,12 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
             >
               {/* Challenge */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[10px] tracking-[0.18em] uppercase text-[var(--acc)] mb-4">Challenge</div>
+                <div className="font-[var(--font-syne)] text-[13px] font-bold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">Challenge</div>
                 <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.challenge}</p>
               </div>
               {/* What I Did */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[10px] tracking-[0.18em] uppercase text-[var(--acc)] mb-4">What I Did</div>
+                <div className="font-[var(--font-syne)] text-[13px] font-bold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">What I Did</div>
                 <ul className="space-y-2">
                   {proj.whatIDid.map((item, i) => (
                     <li key={i} className="text-[13px] font-light text-[var(--txt2)] leading-[1.7] flex gap-2 before:content-['—'] before:text-[var(--acc)] before:shrink-0">{item}</li>
@@ -307,7 +307,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
               </div>
               {/* Impact */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[10px] tracking-[0.18em] uppercase text-[var(--acc)] mb-4">Impact</div>
+                <div className="font-[var(--font-syne)] text-[13px] font-bold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">Impact</div>
                 <ul className="space-y-2">
                   {proj.impact.map((item, i) => (
                     <li key={i} className="text-[13px] font-light text-[var(--txt2)] leading-[1.7] flex gap-2 before:content-['↗'] before:text-[var(--acc)] before:shrink-0">{item}</li>

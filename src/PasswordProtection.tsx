@@ -7,14 +7,12 @@ export default function PasswordProtection({ onAuthenticated, onBack }: { onAuth
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default placeholder password: 'portfolio' or 'rishit2026'
-    // You can change this to whatever you'd like your clients to use
-    if (password === 'rishit2026' || password === 'portfolio') {
+    if (password === 'Keepitsimple*123') {
       setError(false);
       onAuthenticated();
     } else {
       setError(true);
-      setTimeout(() => setError(false), 2000);
+      setTimeout(() => setError(false), 2500);
     }
   };
 
@@ -77,8 +75,8 @@ export default function PasswordProtection({ onAuthenticated, onBack }: { onAuth
               autoFocus
             />
             {error && (
-              <span className="absolute -bottom-6 left-0 right-0 text-center font-[var(--font-syne)] text-[10px] tracking-[0.1em] text-[#ff4d4d] uppercase">
-                Incorrect Password
+              <span className="absolute -bottom-6 left-0 right-0 text-center font-[var(--font-syne)] text-[12px] tracking-[0.05em] text-[#ff1a1a]">
+                Please input the correct password.
               </span>
             )}
           </div>

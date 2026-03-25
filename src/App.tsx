@@ -365,9 +365,9 @@ export default function App() {
 
       {showProjects ? (
         isAuthenticated ? (
-          <ProjectsPage onBack={() => { setShowProjects(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
+          <ProjectsPage onBack={() => { setShowProjects(false); setIsAuthenticated(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
         ) : (
-          <PasswordProtection onAuthenticated={() => setIsAuthenticated(true)} onBack={() => { setShowProjects(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
+          <PasswordProtection onAuthenticated={() => setIsAuthenticated(true)} onBack={() => { setShowProjects(false); setIsAuthenticated(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
         )
       ) : (
       <>

@@ -338,10 +338,7 @@ export default function App() {
               Turning attention into intent—and intent into measurable outcomes.
             </p>
             <div className="hero-meta flex items-center gap-7 opacity-0 translate-y-4">
-              <span className="loc-txt font-[var(--font-syne)] text-[11px] tracking-[0.14em] uppercase text-[var(--txt3)] flex items-center gap-2">
-                <span className="loc-dot w-[7px] h-[7px] rounded-full bg-[var(--acc)] shrink-0 animate-[pulse_2.2s_infinite]"></span>
-                Jönköping, Sweden
-              </span>
+
               <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-semibold tracking-[0.12em] uppercase text-[var(--bg)] bg-[var(--acc)] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[#d6ff8a] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(255,99,33,0.25)] hover:shadow-[0_8px_20px_rgba(214,255,138,0.3)]">
                 Let's Talk ↗
               </a>

@@ -21,12 +21,6 @@ export default function App() {
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
   const heroHlRef = useRef<HTMLHeadingElement>(null);
-  const aboutHlRef = useRef<HTMLHeadingElement>(null);
-  const apSectionRef = useRef<HTMLDivElement>(null);
-  const apLeftRef = useRef<HTMLDivElement>(null);
-  const apRightRef = useRef<HTMLDivElement>(null);
-  const apTargetRef = useRef<HTMLDivElement>(null);
-  const apFinalTextRef = useRef<HTMLParagraphElement>(null);
   const projScrollerRef = useRef<HTMLDivElement>(null);
   const featImgRef = useRef<HTMLDivElement>(null);
   const featImgInnerRef = useRef<HTMLDivElement>(null);
@@ -156,73 +150,6 @@ export default function App() {
       },
     });
 
-    // About Heading Reveal
-    const aboutWraps = aboutHlRef.current?.querySelectorAll('.about-hl-wrap');
-    let aboutChars: HTMLSpanElement[] = [];
-    aboutWraps?.forEach((wrap) => {
-      const chars = splitLetters(wrap as HTMLElement, 'ahl-char inline-block translate-y-[110%] will-change-transform');
-      aboutChars = aboutChars.concat(chars);
-    });
-
-    ScrollTrigger.create({
-      trigger: aboutHlRef.current,
-      start: 'top 72%',
-      once: true,
-      onEnter: () => {
-        gsap.to(aboutChars, {
-          y: '0%',
-          duration: 1.6,
-          ease: 'power4.inOut',
-          stagger: {
-            each: 0.04,
-            from: 'center',
-          },
-        });
-      },
-    });
-
-    // Assembling Paragraph
-    const leftWords = apLeftRef.current?.querySelectorAll('.ap-col-word');
-    const rightWords = apRightRef.current?.querySelectorAll('.ap-col-word');
-    const allWords = [...(leftWords ? Array.from(leftWords) : []), ...(rightWords ? Array.from(rightWords) : [])];
-
-    gsap.set(allWords, { opacity: 1, x: 0, y: 0 });
-    gsap.set(apFinalTextRef.current, { opacity: 0 });
-
-    const apTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: apSectionRef.current,
-        start: 'top top',
-        end: '+=150%',
-        scrub: 2.5,
-        pin: true,
-        anticipatePin: 1,
-      },
-    });
-
-    apTl.to(leftWords || [], {
-      x: '60vw',
-      y: (i) => (i - 2) * 14,
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.in',
-      stagger: { each: 0.12, from: 'start' },
-    }, 0);
-
-    apTl.to(rightWords || [], {
-      x: '-60vw',
-      y: (i) => (i - 2) * 14,
-      opacity: 0,
-      duration: 1,
-      ease: 'power2.in',
-      stagger: { each: 0.12, from: 'end' },
-    }, 0.1);
-
-    apTl.to(apFinalTextRef.current, {
-      opacity: 1,
-      duration: 0.8,
-      ease: 'power2.out',
-    }, 0.65);
 
     // Intersection Observers for other elements
     const revObs = new IntersectionObserver((entries) => {
@@ -419,7 +346,7 @@ export default function App() {
           rishit<em className="text-[var(--acc)] not-italic">.</em>
         </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          <li><a href="#about" data-nav="about" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">About</a></li>
+
           <li><a href="#contact" data-nav="contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
           <li><button onClick={() => setShowProjects(true)} data-nav="projects" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
         </ul>
@@ -620,99 +547,6 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* PROCESS */}
-      <section id="process" className="px-6 md:px-12 py-28 border-t border-[var(--bdr)]">
-        <div className="process-head flex flex-col items-center text-center mb-20 gap-4">
-          <div className="sec-lbl fu font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] flex items-center gap-[10px] mb-[0.8rem]"><em className="text-[var(--acc)] not-italic">03</em> Approach</div>
-          <h2 className="sec-hl fu d1 font-[var(--font-swifter)] font-bold text-[clamp(54px,6.5vw,90px)] leading-[0.88] uppercase tracking-[-0.01em] text-[var(--txt)] relative inline-block z-10 w-fit mx-auto">
-            My Process
-            <div className="absolute left-[48%] bottom-[-15px] w-[50px] h-[50px] rounded-full border-[1px] border-[rgba(255,100,60,0.3)] flex items-center justify-center -z-10 mix-blend-multiply pointer-events-none">
-              <div className="w-[6px] h-[6px] rounded-full bg-[#0099ff]"></div>
-            </div>
-          </h2>
-          <p className="process-sub fu d2 text-[13px] font-light text-[var(--txt2)] leading-[1.85] max-w-[480px]">Every project begins with a story. I incorporate narrative into my designs to build emotional connection with users — then combine it with interaction to give them control.</p>
-        </div>
-
-        <div className="steps-grid grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-[var(--bdr)]">
-          {[
-            { n: '01', title: 'Inspiration', body: 'Inspiration awakens us to new possibilities by allowing us to transcend our ordinary experiences. Finding the right inspiration is where I start — I love when the whole team is involved, as it helps everyone understand which direction to move forward. Inspiration can be found everywhere from nature to machines, from Documentaries and Movies to Pinterest and Dribbble. Once it clicks, it sets the overall tone of the project and its outcome.' },
-            { n: '02', title: 'Design', body: 'Design for me is creating solutions for people through a product or an interface. It is important to understand the problem thoroughly before finding the solution. User Research is the first step — it helps me understand pain points, which guides my Sketching to the Prototype stage. Prototyping moves from boxes on paper to detailed mockups on the laptop. After high fidelity, interactions and animations are added, then it\'s time to test with probable users and colleagues.' },
-            { n: '03', title: 'Validation', body: 'Art is for the artist but design is for the people. No design is valid until it is out in the world being used by real-time users. After the design stage comes User Testing — insights from feedback and observations send me back to the drawing board to patch up the design. The most rewarding experience is seeing users interact with the design and feeling a sense of convenience or joy. I believe: when the value exceeds the price for the user, it creates a wonderful user experience.' },
-          ].map((step, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10% 0px' }}
-              transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className={`step fu bg-[var(--bg)] p-10 relative overflow-hidden transition-colors duration-350 hover:bg-[var(--bg3)] group before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(135deg,var(--acc2)_0%,transparent_65%)] before:opacity-0 before:transition-opacity before:duration-400 hover:before:opacity-100`}
-            >
-              <span className="step-n font-[var(--font-swifter)] text-[72px] font-bold line-height-none text-[var(--bdr2)] block mb-5 transition-all duration-500 ease-[var(--ease)] group-hover:text-[var(--acc3)] group-hover:scale-[1.08] group-hover:-translate-x-1">{step.n}</span>
-              <div className="step-title font-[var(--font-swifter)] font-semibold text-[28px] tracking-[0.04em] uppercase text-[var(--txt)] mb-5 relative after:content-[''] after:block after:w-[22px] after:h-[1px] after:bg-[var(--acc)] after:mt-[10px] after:transition-all after:duration-500 after:ease-[var(--ease)] group-hover:after:w-[52px]">{step.title}</div>
-              <p className="step-body text-[12.5px] font-light text-[var(--txt2)] leading-[1.9]">{step.body}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section id="about" className="px-6 md:px-12 py-28 border-t border-[var(--bdr)]">
-        <div className="flex flex-col items-center text-center mb-12">
-          <div className="sec-lbl fu font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] flex items-center gap-[10px] mb-[0.8rem]"><em className="text-[var(--acc)] not-italic">04</em> About Me</div>
-          <h2 ref={aboutHlRef} className="about-hl font-[var(--font-swifter)] font-bold text-[clamp(78px,10vw,138px)] leading-[0.86] uppercase tracking-[-0.02em] mb-10">
-            <span className="about-hl-wrap block overflow-hidden">About</span><em className="about-hl-wrap block overflow-hidden not-italic [-webkit-text-stroke:1px_rgba(8,8,8,0.12)] text-transparent">Me</em>
-          </h2>
-        </div>
-
-        {/* ASSEMBLING PARAGRAPH */}
-        <div ref={apSectionRef} className="ap-section relative h-screen flex items-center overflow-hidden">
-          <div className="ap-cols absolute inset-0 pointer-events-none flex justify-between px-4">
-            <div ref={apLeftRef} className="ap-col flex flex-col justify-center gap-[6px]">
-              {['Hey Hey', 'Rishit', 'Bhalja', 'focused', 'creative'].map((word, i) => (
-                <span key={i} className="ap-col-word font-[var(--font-swifter)] font-semibold text-[clamp(14px,1.4vw,18px)] tracking-[0.1em] uppercase text-[var(--txt3)] whitespace-nowrap will-change-transform">{word}</span>
-              ))}
-            </div>
-            <div ref={apRightRef} className="ap-col flex flex-col justify-center gap-[6px]">
-              {['design', 'problem', 'solving', 'deadline', 'humour'].map((word, i) => (
-                <span key={i} className="ap-col-word font-[var(--font-swifter)] font-semibold text-[clamp(14px,1.4vw,18px)] tracking-[0.1em] uppercase text-[var(--txt3)] whitespace-nowrap will-change-transform">{word}</span>
-              ))}
-            </div>
-          </div>
-          <div ref={apTargetRef} className="ap-target relative z-[2] max-w-[600px] mx-auto px-12 text-center">
-            <p ref={apFinalTextRef} className="text-[14px] font-light text-[var(--txt2)] leading-[1.95] opacity-0 transition-opacity duration-600">
-              Hey Hey! This is me Rishit Bhalja. Thank you for showing interest in knowing more about me. I am a highly focused individual who has experience working in team environments — able to handle multiple tasks while using a creative approach for problem solving. I am dependable and organised while working on a tight deadline. Even though I take my work seriously, I do have a good sense of humour.
-            </p>
-          </div>
-        </div>
-
-        <div className="max-w-[720px] mx-auto text-center mt-16">
-          <p className="about-body fu d2 text-[14px] font-light text-[var(--txt2)] leading-[1.95] mb-6">I discovered User Experience as a career option when I combined my coding skills with my creativity during my bachelor's. I started to freelance as a Website Designer — that's when I realised I enjoyed designing more than coding. You get to see the outcome of your efforts instantly and every day. Since then I've been learning and working on User Experience Design.</p>
-          <p className="about-body fu d3 text-[14px] font-light text-[var(--txt2)] leading-[1.95] mb-6">Besides work, I love playing basketball and am highly inspired by the great Kobe Bryant. I also enjoy cooking delicious Indian delicacies for people around me. And just like everybody else, I like spending some days just doing "Netflix & Chill."</p>
-          <div className="quote-block fu d4 relative overflow-hidden border-l-2 border-[var(--acc)] pl-6 py-4 my-9 text-left" id="quoteBlock">
-            <p className="quote-txt font-[var(--font-swifter)] text-[21px] font-normal text-[var(--txt)] leading-[1.45]">"You don't have to ask permission to take responsibility."</p>
-            <p className="quote-src font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] mt-[10px]">— Ed Catmull</p>
-          </div>
-        </div>
-
-        <div className="fu d2 max-w-[720px] mx-auto mt-16">
-          <div className="edu-lbl font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] mb-6 flex items-center justify-center gap-3 before:content-[''] before:w-5 before:h-[1px] before:bg-[var(--acc)]">Education & Milestones</div>
-          <ul className="edu-list list-none">
-            {[
-              { yr: '2022', deg: 'Master Degree in UX Design & Information Architecture', loc: 'Jönköping, Sweden' },
-              { yr: '2020', deg: 'Bachelor Degree in Information Technology', loc: 'Surat, India' },
-              { yr: '2018', deg: 'UX Meetup IxDF', loc: 'Mumbai, India' },
-            ].map((edu, i) => (
-              <li key={i} className={`edu-row fu d${i + 3} grid grid-cols-[68px_1fr] gap-6 py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-350 ease-[var(--ease)] first:border-t hover:pl-2 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[var(--acc)] after:transition-all after:duration-500 hover:after:w-full`}>
-                <div className="edu-yr font-[var(--font-swifter)] text-[24px] font-semibold text-[var(--acc)] tracking-[0.02em] leading-none">{edu.yr}</div>
-                <div>
-                  <div className="edu-deg font-[var(--font-syne)] text-[13px] font-medium text-[var(--txt)] mb-[3px]">{edu.deg}</div>
-                  <div className="edu-where text-[12px] text-[var(--txt3)] tracking-[0.03em]">{edu.loc}</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       {/* CONTACT */}
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">

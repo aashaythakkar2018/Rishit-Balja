@@ -249,7 +249,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
               className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16 max-w-[1100px] mx-auto"
             >
               <div>
-                <div className="font-[var(--font-syne)] text-[11px] tracking-[0.18em] uppercase text-[var(--acc)] mb-3">
+                <div className="font-[var(--font-syne)] text-[15px] font-extrabold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">
                   {proj.id} · {proj.type} · {proj.year}
                 </div>
                 <h2 className="font-[var(--font-swifter)] font-bold text-[clamp(42px,6vw,80px)] leading-[0.88] uppercase tracking-[-0.02em] text-[var(--txt)]">

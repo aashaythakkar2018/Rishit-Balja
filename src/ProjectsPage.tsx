@@ -378,8 +378,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
               transition={{ ease: [0.77, 0, 0.175, 1], duration: 0.4 }}
               src={selectedImage}
               alt="Enlarged view"
-              className="max-w-full max-h-full object-contain shadow-2xl rounded-[4px]"
-              onClick={(e) => e.stopPropagation()}
+              className="max-w-full max-h-full object-contain shadow-2xl rounded-[4px] cursor-zoom-out"
             />
           </motion.div>
         )}

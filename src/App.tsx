@@ -330,7 +330,7 @@ export default function App() {
             <p className="hero-eyebrow font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] mb-[2.2rem] flex items-center gap-3 opacity-0 translate-y-4 before:content-[''] before:w-[22px] before:h-[1px] before:bg-[var(--acc)]">
               <span>01</span> — Turning attention into intent—and intent into measurable outcomes.
             </p>
-            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-semibold text-[clamp(32px,4vw,60px)] leading-[0.88] uppercase tracking-[-0.01em]">
+            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-semibold text-[clamp(40px,5vw,72px)] leading-[0.88] uppercase tracking-[-0.01em]">
               <span className="lw block overflow-hidden"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="digital experiences">digital experiences</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="where user desire">where user desire</span></span>
@@ -391,7 +391,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-10% 0px' }}
             transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
-            className="sec-hl font-[var(--font-swifter)] font-bold text-[clamp(54px,6.5vw,90px)] leading-[0.88] uppercase tracking-[-0.01em] text-[var(--txt)]"
+            className="sec-hl font-[var(--font-swifter)] font-semibold text-[clamp(54px,6.5vw,90px)] leading-[0.88] uppercase tracking-[-0.01em] text-[var(--txt)]"
           >
             The Projects
           </motion.h2>
@@ -456,7 +456,7 @@ export default function App() {
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
 
-          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-bold text-[clamp(60px,8vw,118px)] leading-[0.86] uppercase tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
+          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-semibold text-[clamp(60px,8vw,118px)] leading-[0.86] uppercase tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

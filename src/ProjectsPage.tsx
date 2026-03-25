@@ -211,14 +211,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
 
       {/* HERO */}
       <section className="pt-[68px] px-6 md:px-12 py-24 border-b border-[var(--bdr)] text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
-          className="font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt3)] flex items-center justify-center gap-[10px] mb-5"
-        >
-          <em className="text-[var(--acc)] not-italic">02</em> Selected Work
-        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}

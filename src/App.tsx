@@ -5,6 +5,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { motion, AnimatePresence } from 'motion/react';
 import ProjectsPage, { projects as projData } from './ProjectsPage';
 import PasswordProtection from './PasswordProtection';
+import heroPortrait from './hero-portrait.jpg';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -490,7 +491,7 @@ export default function App() {
           <div className="hero-R hidden md:block relative overflow-hidden">
             <div className="hero-img-full w-full h-full absolute inset-0 z-[5]">
               <img 
-                src="/src/hero-portrait.jpg" 
+                src={heroPortrait} 
                 alt="Rishit Bhalja" 
                 className="w-full h-full object-cover object-[center_20%]" 
                 referrerPolicy="no-referrer" 

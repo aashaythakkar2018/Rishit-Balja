@@ -249,7 +249,7 @@ export default function App() {
               transition={{ duration: 0.4, ease: [0.77, 0, 0.175, 1] }}
               className="font-[var(--font-syne)] text-[clamp(44px,8vw,100px)] font-extrabold text-[var(--txt)] text-center tracking-[0.02em] relative"
             >
-              Rishit. <span className="text-[var(--acc)]">Bhalja.</span>
+              rishit <span className="text-[var(--acc)]">bhalja</span>.
               <motion.div 
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}

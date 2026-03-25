@@ -170,56 +170,7 @@ export default function App() {
   }, [isLoaded]);
 
   // Horizontal Scroll and Tilt
-  useEffect(() => {
-    const scroller = projScrollerRef.current;
-    if (!scroller) return;
 
-    let isDown = false, startX = 0, scrollLeft = 0, velX = 0, lastX = 0, lastT = 0, raf: number;
-
-    const handleMouseDown = (e: MouseEvent) => {
-      isDown = true;
-      startX = e.pageX;
-      scrollLeft = scroller.scrollLeft;
-      velX = 0;
-      lastX = e.pageX;
-      lastT = Date.now();
-      scroller.classList.add('dragging');
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDown) return;
-      const now = Date.now(), dx = e.pageX - lastX, dt = now - lastT || 1;
-      velX = dx / dt;
-      scroller.scrollLeft = scrollLeft - (e.pageX - startX);
-      lastX = e.pageX;
-      lastT = now;
-    };
-
-    const handleMouseUp = () => {
-      if (!isDown) return;
-      isDown = false;
-      scroller.classList.remove('dragging');
-      let v = velX * 14;
-      const momentum = () => {
-        if (Math.abs(v) < 0.5) return;
-        scroller.scrollLeft -= v;
-        v *= 0.93;
-        raf = requestAnimationFrame(momentum);
-      };
-      cancelAnimationFrame(raf);
-      momentum();
-    };
-
-    scroller.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      scroller.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, []);
 
   // Tilt Effect
   useEffect(() => {
@@ -484,26 +435,8 @@ export default function App() {
           </motion.p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: '-10% 0px' }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
-          className="drag-hint px-6 md:px-12 flex items-center justify-center gap-[10px] font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] mb-6"
-        >
-          <span>Drag to explore</span>
-          <div className="drag-line flex-1 max-w-[200px] h-[1px] bg-[var(--bdr2)] relative overflow-hidden after:content-[''] after:absolute after:left-[-30%] after:top-0 after:bottom-0 after:w-[30%] after:bg-[linear-gradient(90deg,transparent,var(--acc),transparent)] after:animate-[drag_2.4s_ease-in-out_infinite]"></div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-10% 0px' }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
-          ref={projScrollerRef}
-          className="proj-scroll-outer overflow-visible cursor-grab select-none active:cursor-grabbing pb-8"
-        >
-          <div className="proj-reel flex gap-0 px-6 md:px-12 w-max transition-transform duration-100 linear">
+        <div className="px-6 md:px-12 pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
             {projData.map((proj, i) => (
               <motion.div
                 key={i}
@@ -511,7 +444,7 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-10% 0px' }}
                 transition={{ duration: 0.7, delay: 0.2 + (i * 0.1), ease: [0.77, 0, 0.175, 1] }}
-                className="w-[clamp(280px,28vw,380px)] shrink-0 border border-[var(--bdr)] rounded-[2px] overflow-hidden relative cursor-pointer bg-[var(--bg)] group"
+                className="border border-[var(--bdr)] rounded-[2px] overflow-hidden relative cursor-pointer bg-[var(--bg)] group"
                 onClick={() => setShowProjects(true)}
               >
                 <div className="proj-img-wrap overflow-hidden aspect-[4/3] relative">
@@ -544,7 +477,7 @@ export default function App() {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
 

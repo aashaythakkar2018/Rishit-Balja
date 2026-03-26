@@ -141,24 +141,13 @@ export default function App() {
       return spans;
     };
 
-    // Hero Reveal (Slide-in Only)
+    // Hero Reveal (Instant)
     const heroLines = heroHlRef.current?.querySelectorAll('.li');
-    gsap.set(heroLines, { y: '110%' });
-
-    gsap.to(heroLines, {
-      y: '0%',
-      duration: 1.5,
-      ease: 'power4.out',
-      stagger: 0.1,
-      delay: 0.5,
-      onStart: () => {
-        gsap.to('.hero-img-full', { opacity: 1, scale: 1, duration: 2.2, ease: 'power3.inOut', delay: 0.2 });
-      },
-      onComplete: () => {
-        gsap.to('.hero-sub', { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out' });
-        gsap.to('.hero-meta', { opacity: 1, y: 0, duration: 1.0, ease: 'power4.out', delay: 0.15 });
-      },
-    });
+    gsap.set(heroLines, { y: '0%' });
+    gsap.set('.hero-sub', { opacity: 1, y: 0 });
+    gsap.set('.hero-meta', { opacity: 1, y: 0 });
+    gsap.set('.hero-overlays div', { opacity: 1, y: 0 });
+    gsap.set('.hero-img-full', { opacity: 1, scale: 1 });
 
 
     // Intersection Observers for other elements
@@ -400,13 +389,13 @@ export default function App() {
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="where user desire">where user <span className="font-medium">desire</span></span></span>
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="meets business value.">meets business <span className="font-medium">value</span><span className="text-[var(--acc)] font-light">.</span></span></span>
             </h1>
-            <p className="hero-sub text-[14px] font-light text-[var(--txt2)] leading-[1.8] max-w-[480px] mt-8 mb-10 opacity-0 translate-y-4">
+            <p className="hero-sub text-[14px] font-light text-[var(--txt2)] leading-[1.8] max-w-[480px] mt-8 mb-10">
               Turning attention into intent—and intent into measurable outcomes.
             </p>
-            <div className="hero-meta flex items-center gap-7 opacity-0 translate-y-4">
+            <div className="hero-meta flex items-center gap-7">
 
               <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-light tracking-[0.12em] text-[#080808] border border-[#080808] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]">
-                Let's Talk
+                Let's Connect
               </a>
             </div>
           </div>
@@ -421,50 +410,23 @@ export default function App() {
             </div>
             
             <div className="hero-overlays absolute inset-0 p-12 flex flex-col justify-end pointer-events-none z-[10]">
-              <div className="font-[var(--font-syne)] text-[11px] tracking-[0.1em] text-[var(--txt3)] text-right opacity-0 translate-y-4">© 2026 Rishit Bhalja</div>
+              <div className="font-[var(--font-syne)] text-[11px] tracking-[0.1em] text-[var(--txt3)] text-right">© 2026 Rishit Bhalja</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TICKER */}
-      <div className="ticker bg-[var(--acc)] h-[44px] overflow-hidden flex items-center">
-        <div className="t-track flex whitespace-nowrap animate-[tick_24s_linear_infinite]">
-          {['UX Design', 'UI Design', 'Enterprise Experience', 'User Research', 'Prototyping', 'Information Architecture', 'Jönköping Sweden', 'Interaction Design'].map((item, i) => (
-            <span key={i} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
-              {item}
-            </span>
-          ))}
-          {['UX Design', 'UI Design', 'Enterprise Experience', 'User Research', 'Prototyping', 'Information Architecture', 'Jönköping Sweden', 'Interaction Design'].map((item, i) => (
-            <span key={`dup-${i}`} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
+
 
       {/* PROJECTS */}
       <section id="projects" className="py-28 border-t border-[var(--bdr)] overflow-hidden">
         <div className="proj-header px-6 md:px-12 flex flex-col items-center text-center mb-14 gap-4">
 
           <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
             className="sec-hl font-[var(--font-swifter)] font-light text-[clamp(54px,6.5vw,90px)] leading-[0.88] tracking-[-0.01em] text-[var(--txt)]"
           >
             The Projects
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ duration: 0.6, delay: 0.1, ease: [0.77, 0, 0.175, 1] }}
-            className="proj-intro max-w-[480px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]"
-          >
-            Design work at the intersection of responsible design, modernism & elegant simplicity — emphasising typography, colour & white space.
-          </motion.p>
         </div>
 
         <div className="px-6 md:px-12 pb-24">
@@ -472,27 +434,17 @@ export default function App() {
             {projData.map((proj, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.7, delay: 0.2 + (i * 0.1), ease: [0.77, 0, 0.175, 1] }}
                 className="border border-[var(--bdr)] rounded-[2px] overflow-hidden relative cursor-pointer bg-[var(--bg)] group"
                 onClick={() => setShowProjects(true)}
               >
                 <div className="proj-img-wrap overflow-hidden aspect-[4/3] relative">
-                  <motion.div
-                    initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-                    whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-                    viewport={{ once: true, margin: '-10% 0px' }}
-                    transition={{ duration: 0.8, delay: 0.3 + (i * 0.1), ease: [0.77, 0, 0.175, 1] }}
-                    className="w-full h-full"
-                  >
+                  <div className="w-full h-full">
                     <img
                       src={proj.cover}
                       alt={proj.title}
                       className="w-full h-full object-cover transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.05]"
                     />
-                  </motion.div>
+                  </div>
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,8,8,0.85)_0%,transparent_50%)] opacity-0 transition-opacity duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:opacity-100 pointer-events-none"></div>
                   <div className="absolute top-4 left-4 font-[var(--font-swifter)] text-[12px] tracking-[0.14em] text-[var(--txt3)] z-[2] mix-blend-difference">{proj.id}</div>
                   <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-3 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] z-[2] group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none">
@@ -517,7 +469,7 @@ export default function App() {
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
 
-          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(60px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
+          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(60px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Social<em className="not-italic text-[var(--acc)]">s</em></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

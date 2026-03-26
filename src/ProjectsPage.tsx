@@ -26,7 +26,7 @@ const projects = [
       'Reduced support dependency through clearer UX',
       'Established foundation for subscription growth and future roadmap',
     ],
-    cover: '/projects/driving-behaviour/cover.png',
+    cover: '/projects/driving-behaviour.jpg',
     images: [
       '/projects/driving-behaviour/img1.png',
       '/projects/driving-behaviour/img2.png',
@@ -52,7 +52,7 @@ const projects = [
       'Strengthened competitive positioning through a differentiated, premium experience',
       'Supported early adoption of electric trucks by reducing friction in infrastructure access',
     ],
-    cover: '/projects/charging-service/cover.png',
+    cover: '/projects/charging-service.jpg',
     images: [
       '/projects/charging-service/img1.png',
       '/projects/charging-service/img2.png',
@@ -78,7 +78,7 @@ const projects = [
       'Shaped product direction for a scalable, compliance-driven service',
       'Established a foundation for reducing user error and improving trust in regulated workflows',
     ],
-    cover: '/projects/tachograph-service/cover.png',
+    cover: '/projects/tachograph.jpg',
     images: [
       '/projects/tachograph-service/img1.png',
       '/projects/tachograph-service/img2.png',

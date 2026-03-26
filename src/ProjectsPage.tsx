@@ -167,13 +167,13 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
         >
           ← rishit<em className="text-[var(--acc)] not-italic">.</em>
         </button>
-        <span className="font-[var(--font-syne)] text-[11px] tracking-[0.16em] uppercase text-[var(--txt3)]">
+        <span className="font-[var(--font-syne)] text-[11px] tracking-[0.16em] text-[var(--txt3)]">
           Projects
         </span>
         <div className="relative nav-cv z-[5000]">
           <button 
             onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
-            className="font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--bg)] bg-[var(--acc)] px-5 py-[9px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] flex items-center gap-[6px] cursor-pointer border-none"
+            className="font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.12em] text-[var(--bg)] bg-[var(--acc)] px-5 py-[9px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] flex items-center gap-[6px] cursor-pointer border-none"
           >
             CV <span className={`text-[9px] transition-transform duration-300 ${isCVDropdownOpen ? 'rotate-180' : ''}`}>▲</span>
           </button>
@@ -190,7 +190,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
                   href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" 
                   target="_blank" 
                   onClick={() => setIsCVDropdownOpen(false)}
-                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                 >
                   English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
                 </a>
@@ -199,7 +199,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
                   href="/Rishit-CV-Swedish.pdf" 
                   target="_blank" 
                   onClick={() => setIsCVDropdownOpen(false)}
-                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                  className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                 >
                   Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
                 </a>
@@ -216,7 +216,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.77, 0, 0.175, 1] }}
-          className="font-[var(--font-swifter)] font-bold text-[clamp(60px,8vw,110px)] leading-[0.88] uppercase tracking-[-0.02em] text-[var(--txt)]"
+          className="font-[var(--font-swifter)] font-light text-[clamp(60px,8vw,110px)] leading-[0.88] tracking-[-0.02em] text-[var(--txt)]"
         >
           The Projects
         </motion.h1>
@@ -243,10 +243,10 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
               className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-16 max-w-[1100px] mx-auto"
             >
               <div>
-                <div className="font-[var(--font-syne)] text-[15px] font-extrabold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">
+                <div className="font-[var(--font-syne)] text-[15px] font-medium tracking-[0.16em] text-[var(--acc)] mb-4">
                   {proj.id} · {proj.type} · {proj.year}
                 </div>
-                <h2 className="font-[var(--font-swifter)] font-bold text-[clamp(42px,6vw,80px)] leading-[0.88] uppercase tracking-[-0.02em] text-[var(--txt)]">
+                <h2 className="font-[var(--font-swifter)] font-light text-[clamp(42px,6vw,80px)] leading-[0.88] tracking-[-0.02em] text-[var(--txt)]">
                   {proj.title}<br />
                   <em className="not-italic text-[var(--txt3)] [-webkit-text-stroke:1px_rgba(8,8,8,0.15)]">{proj.subtitle}</em>
                 </h2>
@@ -288,12 +288,12 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
             >
               {/* Challenge */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[15px] font-extrabold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">Challenge</div>
+                <div className="font-[var(--font-syne)] text-[15px] font-medium tracking-[0.16em] text-[var(--acc)] mb-4">Challenge</div>
                 <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.challenge}</p>
               </div>
               {/* What I Did */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[15px] font-extrabold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">What I Did</div>
+                <div className="font-[var(--font-syne)] text-[15px] font-medium tracking-[0.16em] text-[var(--acc)] mb-4">What I Did</div>
                 <ul className="space-y-2">
                   {proj.whatIDid.map((item, i) => (
                     <li key={i} className="text-[13px] font-light text-[var(--txt2)] leading-[1.7] flex gap-2 before:content-['—'] before:text-[var(--acc)] before:shrink-0">{item}</li>
@@ -302,7 +302,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
               </div>
               {/* Impact */}
               <div className="bg-[var(--bg)] p-8">
-                <div className="font-[var(--font-syne)] text-[15px] font-extrabold tracking-[0.16em] uppercase text-[var(--acc)] mb-4">Impact</div>
+                <div className="font-[var(--font-syne)] text-[15px] font-medium tracking-[0.16em] text-[var(--acc)] mb-4">Impact</div>
                 <ul className="space-y-2">
                   {proj.impact.map((item, i) => (
                     <li key={i} className="text-[13px] font-light text-[var(--txt2)] leading-[1.7] flex gap-2 before:content-['—'] before:text-[var(--acc)] before:shrink-0">{item}</li>
@@ -349,7 +349,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
         <div className="text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — Experience Designer</div>
         <button
           onClick={onBack}
-          className="mt-2 font-[var(--font-syne)] text-[11px] font-semibold tracking-[0.12em] uppercase text-[var(--bg)] bg-[var(--acc)] px-6 py-[10px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] hover:-translate-y-[2px]"
+          className="mt-2 font-[var(--font-syne)] text-[11px] font-light tracking-[0.12em] text-[var(--bg)] bg-[var(--acc)] px-6 py-[10px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] hover:-translate-y-[2px]"
         >
           ← Back to Home
         </button>

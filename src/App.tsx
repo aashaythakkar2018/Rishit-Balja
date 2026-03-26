@@ -107,25 +107,17 @@ export default function App() {
       return spans;
     };
 
-    // Hero Name Reveal
-    const heroWords = heroHlRef.current?.querySelectorAll('.li');
-    let heroChars: HTMLSpanElement[] = [];
-    heroWords?.forEach((word) => {
-      const chars = splitLetters(word as HTMLElement, 'hl-char inline-block translate-y-[110%] will-change-transform');
-      heroChars = heroChars.concat(chars);
-    });
+    // Hero Reveal (Slide-in Only)
+    const heroLines = heroHlRef.current?.querySelectorAll('.li');
+    gsap.set(heroLines, { y: '110%' });
 
-    gsap.to(heroChars, {
+    gsap.to(heroLines, {
       y: '0%',
-      duration: 1.7,
-      ease: 'power4.inOut',
-      stagger: {
-        each: 0.03,
-        from: 'center',
-      },
+      duration: 1.5,
+      ease: 'power4.out',
+      stagger: 0.1,
       delay: 0.5,
       onStart: () => {
-
         gsap.to('.hero-img-full', { opacity: 1, scale: 1, duration: 2.2, ease: 'power3.inOut', delay: 0.2 });
       },
       onComplete: () => {
@@ -281,12 +273,12 @@ export default function App() {
           rishit<em className="text-[var(--acc)] not-italic">.</em>
         </a>
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          <li><a href="#contact" data-nav="contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
-          <li><button onClick={() => setShowProjects(true)} data-nav="projects" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
+          <li><a href="#contact" data-nav="contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
+          <li><button onClick={() => setShowProjects(true)} data-nav="projects" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
           <li className="relative nav-cv z-[5000]">
             <button 
               onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
-              className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0"
+              className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0"
             >
               CV
             </button>
@@ -328,18 +320,18 @@ export default function App() {
         <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-68px)]">
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
 
-            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-semibold text-[clamp(40px,5vw,72px)] leading-[0.88] uppercase tracking-[-0.01em]">
+            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(40px,5vw,72px)] leading-[0.88] tracking-[-0.01em] text-[var(--txt)]">
               <span className="lw block overflow-hidden"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="digital experiences">digital experiences</span></span>
-              <span className="lw block overflow-hidden"><span className="li block" data-word="where user desire">where user desire</span></span>
-              <span className="lw block overflow-hidden"><span className="li block acc-word text-[var(--acc)]" data-word="meets business value.">meets business value.</span></span>
+              <span className="lw block overflow-hidden"><span className="li block" data-word="where user desire">where user <span className="font-medium">desire</span></span></span>
+              <span className="lw block overflow-hidden"><span className="li block" data-word="meets business value.">meets business <span className="font-medium">value</span><span className="text-[var(--acc)] font-bold">.</span></span></span>
             </h1>
             <p className="hero-sub text-[14px] font-light text-[var(--txt2)] leading-[1.8] max-w-[480px] mt-8 mb-10 opacity-0 translate-y-4">
               Turning attention into intent—and intent into measurable outcomes.
             </p>
             <div className="hero-meta flex items-center gap-7 opacity-0 translate-y-4">
 
-              <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-semibold tracking-[0.12em] uppercase text-[#080808] border border-[#080808] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]">
+              <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-light tracking-[0.12em] text-[#080808] border border-[#080808] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]">
                 Let's Talk
               </a>
             </div>
@@ -365,12 +357,12 @@ export default function App() {
       <div className="ticker bg-[var(--acc)] h-[44px] overflow-hidden flex items-center">
         <div className="t-track flex whitespace-nowrap animate-[tick_24s_linear_infinite]">
           {['UX Design', 'UI Design', 'Enterprise Experience', 'User Research', 'Prototyping', 'Information Architecture', 'Jönköping Sweden', 'Interaction Design'].map((item, i) => (
-            <span key={i} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] uppercase text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
+            <span key={i} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
               {item}
             </span>
           ))}
           {['UX Design', 'UI Design', 'Enterprise Experience', 'User Research', 'Prototyping', 'Information Architecture', 'Jönköping Sweden', 'Interaction Design'].map((item, i) => (
-            <span key={`dup-${i}`} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] uppercase text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
+            <span key={`dup-${i}`} className="t-item font-[var(--font-swifter)] font-semibold text-[13px] tracking-[0.18em] text-[var(--bg)] px-8 flex items-center gap-7 after:content-['✦'] after:text-[9px] after:text-[rgba(8,8,8,0.3)]">
               {item}
             </span>
           ))}
@@ -386,7 +378,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-10% 0px' }}
             transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
-            className="sec-hl font-[var(--font-swifter)] font-semibold text-[clamp(54px,6.5vw,90px)] leading-[0.88] uppercase tracking-[-0.01em] text-[var(--txt)]"
+            className="sec-hl font-[var(--font-swifter)] font-light text-[clamp(54px,6.5vw,90px)] leading-[0.88] tracking-[-0.01em] text-[var(--txt)]"
           >
             The Projects
           </motion.h2>
@@ -430,14 +422,14 @@ export default function App() {
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,8,8,0.85)_0%,transparent_50%)] opacity-0 transition-opacity duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:opacity-100 pointer-events-none"></div>
                   <div className="absolute top-4 left-4 font-[var(--font-swifter)] text-[12px] tracking-[0.14em] text-[var(--txt3)] z-[2] mix-blend-difference">{proj.id}</div>
                   <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-3 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] z-[2] group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none">
-                    <p className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] uppercase text-[rgba(255,120,60,0.9)] mb-1">{proj.type}</p>
-                    <h3 className="font-[var(--font-swifter)] font-semibold text-[20px] tracking-[0.02em] uppercase text-[var(--bg)]">{proj.title}</h3>
+                    <p className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] text-[rgba(255,120,60,0.9)] mb-1">{proj.type}</p>
+                    <h3 className="font-[var(--font-swifter)] font-light text-[20px] tracking-[0.02em] text-[var(--bg)]">{proj.title}</h3>
                   </div>
                 </div>
                 <div className="proj-info p-6 relative bg-[var(--bg)] transition-colors duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:bg-[var(--bg2)]">
                   <div className="font-[var(--font-swifter)] text-[11px] tracking-[0.14em] text-[var(--txt3)] mb-2 group-hover:-translate-y-1 transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)]">{proj.year}</div>
-                  <div className="font-[var(--font-swifter)] font-semibold text-[22px] tracking-[0.03em] uppercase text-[var(--txt)] mb-1 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:text-[var(--acc)] group-hover:-translate-y-1">{proj.title}</div>
-                  <div className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] uppercase text-[var(--txt3)] transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:-translate-y-1">{proj.type}</div>
+                  <div className="font-[var(--font-swifter)] font-light text-[22px] tracking-[0.03em] text-[var(--txt)] mb-1 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:text-[var(--acc)] group-hover:-translate-y-1">{proj.title}</div>
+                  <div className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] text-[var(--txt3)] transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:-translate-y-1">{proj.type}</div>
                   <div className="absolute right-[1.4rem] top-[1.4rem] w-[34px] h-[34px] border border-[var(--bdr2)] rounded-full flex items-center justify-center text-[14px] text-[var(--txt3)] rotate-45 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:rotate-0 group-hover:border-[var(--acc)] group-hover:bg-[var(--acc)] group-hover:text-[var(--bg)] group-hover:-translate-y-1">↗</div>
                 </div>
               </motion.div>
@@ -451,7 +443,7 @@ export default function App() {
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
 
-          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-semibold text-[clamp(60px,8vw,118px)] leading-[0.86] uppercase tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
+          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(60px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Let's <em className="not-italic text-[var(--acc)]">Connect</em></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -474,8 +466,8 @@ export default function App() {
                 className="contact-row flex items-center justify-between py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-300 group before:content-[''] before:absolute before:inset-0 before:bg-[var(--acc2)] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-400 hover:before:scale-y-100 hover:border-[var(--acc3)]"
                 target="_blank"
               >
-                <span className="c-platform font-[var(--font-syne)] text-[11px] tracking-[0.18em] uppercase text-[var(--txt3)] relative z-[1]">{link.platform}</span>
-                <span className="c-url font-[var(--font-swifter)] text-[22px] font-medium uppercase tracking-[0.03em] text-[var(--txt)] transition-colors duration-250 relative z-[1]">{link.url}</span>
+                <span className="c-platform font-[var(--font-syne)] text-[11px] tracking-[0.18em] text-[var(--txt3)] relative z-[1]">{link.platform}</span>
+                <span className="c-url font-[var(--font-swifter)] text-[22px] font-medium tracking-[0.03em] text-[var(--txt)] transition-colors duration-250 relative z-[1]">{link.url}</span>
                 <span className="c-arrow text-[18px] text-[var(--txt3)] rotate-45 transition-all duration-400 ease-[var(--ease)] relative z-[1] group-hover:rotate-0 group-hover:text-[var(--acc)]">↗</span>
               </motion.a>
             ))}
@@ -491,9 +483,9 @@ export default function App() {
           <div className="f-logo font-[var(--font-syne)] font-extrabold text-[14px] tracking-[0.07em] lowercase">rishitbhalja</div>
           <div className="f-copy text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — UX Designer</div>
           <nav className="f-socials flex gap-8">
-            <a href="https://www.linkedin.com/in/rishitbhalja/" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full" target="_blank">LinkedIn</a>
-            <a href="mailto:rishitbhalja@gmail.com" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full">Mail</a>
-            <a href="https://www.instagram.com/rishitbhalja/" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] uppercase text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full" target="_blank">Instagram</a>
+            <a href="https://www.linkedin.com/in/rishitbhalja/" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full" target="_blank">LinkedIn</a>
+            <a href="mailto:rishitbhalja@gmail.com" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full">Mail</a>
+            <a href="https://www.instagram.com/rishitbhalja/" className="f-soc font-[var(--font-syne)] text-[11px] tracking-[0.12em] text-[var(--txt3)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-all after:duration-350 hover:after:w-full" target="_blank">Instagram</a>
           </nav>
         </motion.footer>
       </section>

@@ -4,17 +4,18 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import { motion, AnimatePresence } from 'motion/react';
 import ProjectsPage, { projects as projData } from './ProjectsPage';
-import PasswordProtection from './PasswordProtection';
 import heroPortrait from './hero-portrait.jpg';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [password, setPassword] = useState('');
+  const [passError, setPassError] = useState(false);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showProjects, setShowProjects] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
   
   const cursorDotRef = useRef<HTMLDivElement>(null);
@@ -25,17 +26,38 @@ export default function App() {
   const featImgInnerRef = useRef<HTMLDivElement>(null);
 
   // Loader
+  // Remove the auto-loading effect
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsLoaded(true);
+  //   }, 2800);
+  //   return () => clearTimeout(timer);
+  // }, []);
+
+  const handleAuth = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'Keepitsimple*123') {
+      setIsAuthenticating(true);
+      setPassError(false);
+      // Brief delay for the aesthetic transition
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 800);
+    } else {
+      setPassError(true);
+      setTimeout(() => setPassError(false), 2000);
+    }
+  };
+  // Initial body overflow hidden, set to auto when loaded
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
+    if (isLoaded) {
       document.body.style.overflow = 'auto';
-    }, 1000);
+    }
     return () => {
-      clearTimeout(timer);
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, [isLoaded]);
 
 
 
@@ -218,11 +240,7 @@ export default function App() {
       <div ref={cursorRingRef} className="cring fixed w-[38px] h-[38px] border border-[rgba(255,99,33,0.35)] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,border-color] duration-[0.28s] ease-[var(--ease)] will-change-[left,top]"></div>
 
       {showProjects ? (
-        isAuthenticated ? (
-          <ProjectsPage onBack={() => { setShowProjects(false); setIsAuthenticated(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
-        ) : (
-          <PasswordProtection onAuthenticated={() => setIsAuthenticated(true)} onBack={() => { setShowProjects(false); setIsAuthenticated(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
-        )
+        <ProjectsPage onBack={() => { setShowProjects(false); setTimeout(() => window.scrollTo(0, 0), 50); }} />
       ) : (
       <>
       {/* LOADER */}
@@ -232,29 +250,67 @@ export default function App() {
             key="preloader"
             initial={{ opacity: 1, y: 0 }}
             exit={{ y: '-100%', opacity: 0 }}
-            transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
-            className="fixed inset-0 z-[9999] bg-[var(--bg)] flex flex-col items-center justify-center cursor-wait"
+            transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+            className="fixed inset-0 z-[9999] bg-[var(--bg)] flex flex-col items-center justify-center"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)', letterSpacing: '-0.02em' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)', letterSpacing: '0.01em' }}
-              transition={{ duration: 0.4, ease: [0.77, 0, 0.175, 1] }}
-              className="font-[var(--font-syne)] text-[clamp(44px,8vw,100px)] font-extrabold text-[var(--txt)] text-center tracking-[0.02em] relative"
-            >
-              rishit <span className="text-[var(--acc)]">bhalja</span>.&nbsp;&nbsp;
-              <motion.div 
-                initial={{ opacity: 0, scaleX: 0 }}
-                animate={{ opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
-                className="absolute -bottom-2 md:-bottom-4 left-0 right-0 h-[3px] bg-[var(--acc)] origin-left"
-              />
+            <div className="flex flex-col items-center w-full max-w-[400px] px-6">
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 0.5, 0] }}
-                transition={{ duration: 0.2, delay: 0.9 }}
-                className="absolute inset-0 bg-white mix-blend-overlay pointer-events-none"
-              />
-            </motion.div>
+                initial={{ opacity: 0, y: 20, filter: 'blur(10px)', letterSpacing: '-0.02em' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)', letterSpacing: '0.01em' }}
+                transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
+                className="font-[var(--font-syne)] text-[clamp(40px,6vw,72px)] font-light text-[var(--txt)] text-center tracking-[-0.03em] relative mb-12"
+              >
+                rishitbhalja<span className="text-[var(--acc)]">.</span>
+                <motion.div 
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: isAuthenticating ? 1 : 0.4 }}
+                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+                  className="absolute -bottom-3 left-0 right-0 h-[2px] bg-[var(--acc)] origin-left opacity-30"
+                />
+              </motion.div>
+
+              <motion.form 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+                onSubmit={handleAuth}
+                className="w-full flex flex-col gap-4"
+              >
+                <div className="relative group">
+                  <input 
+                    type="password"
+                    placeholder="Enter Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`w-full bg-transparent border-b ${passError ? 'border-[#ff4d4d]' : 'border-[var(--bdr2)]'} py-3 text-[13px] font-[var(--font-syne)] text-[var(--txt)] placeholder:text-[var(--txt3)] placeholder:opacity-50 outline-none transition-all focus:border-[var(--acc)]`}
+                    autoFocus
+                  />
+                  {passError && (
+                    <motion.span 
+                      initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
+                      className="absolute left-0 -bottom-6 text-[10px] text-[#ff4d4d] font-[var(--font-syne)] tracking-wide"
+                    >
+                      Incorrect password. Please try again.
+                    </motion.span>
+                  )}
+                </div>
+                <button 
+                  type="submit"
+                  disabled={isAuthenticating}
+                  className="mt-4 self-start font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt)] opacity-60 hover:opacity-100 hover:text-[var(--acc)] transition-all flex items-center gap-2 group"
+                >
+                  {isAuthenticating ? 'Authenticating...' : 'Access Site'} 
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </button>
+              </motion.form>
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.5, 0] }}
+              transition={{ duration: 0.2, delay: 0.9 }}
+              className="absolute inset-0 bg-white mix-blend-overlay pointer-events-none"
+            />
           </motion.div>
         )}
       </AnimatePresence>

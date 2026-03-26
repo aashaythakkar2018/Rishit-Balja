@@ -25,7 +25,7 @@ export default function PasswordProtection({ onAuthenticated, onBack }: { onAuth
       className="min-h-screen bg-[var(--bg)] flex flex-col pt-[68px]"
     >
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(253,252,248,0.82)] backdrop-blur-[22px]">
+      <nav className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(225,225,227,0.82)] backdrop-blur-[22px]">
         <button
           onClick={onBack}
           className="nav-logo font-[var(--font-syne)] font-extrabold text-[15px] tracking-[0.05em] lowercase text-[var(--txt)] flex items-center gap-2 hover:text-[var(--acc)] transition-colors duration-250 cursor-pointer border-none bg-transparent"

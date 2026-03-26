@@ -241,12 +241,13 @@ export default function App() {
       <div ref={cursorRingRef} className="cring fixed w-[38px] h-[38px] border border-[rgba(255,99,33,0.35)] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,border-color] duration-[0.28s] ease-[var(--ease)] will-change-[left,top]"></div>
 
       {showProjects ? (
-        <ProjectsPage onBack={() => { 
+        <ProjectsPage onBack={(targetId?: string) => { 
           setShowProjects(false); 
           setTimeout(() => {
-            const projectsSection = document.getElementById('projects');
-            if (projectsSection) {
-              const targetPosition = projectsSection.getBoundingClientRect().top + window.pageYOffset - 80;
+            const id = targetId || 'projects';
+            const targetElement = document.getElementById(id);
+            if (targetElement) {
+              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
               window.scrollTo({ top: targetPosition, behavior: 'instant' });
             }
           }, 10); 

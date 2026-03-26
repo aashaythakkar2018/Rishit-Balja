@@ -159,7 +159,7 @@ export default function ProjectsPage({ onBack }: { onBack: () => void }) {
         initial={{ y: -68 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(225,225,227,0.82)] backdrop-blur-[22px]"
+        className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(246,247,249,0.82)] backdrop-blur-[22px]"
       >
         <button
           onClick={onBack}

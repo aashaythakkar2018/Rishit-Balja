@@ -268,7 +268,7 @@ export default function App() {
 
 
       {/* NAV */}
-      <nav id="mainNav" className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(225,225,227,0.82)] backdrop-blur-[22px] transition-colors duration-500">
+      <nav id="mainNav" className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(246,247,249,0.82)] backdrop-blur-[22px] transition-colors duration-500">
         <a href="#home" className="nav-logo font-[var(--font-syne)] font-extrabold text-[17px] tracking-[0.05em] lowercase text-[var(--txt)]">
           rishit<em className="text-[var(--acc)] not-italic">.</em>
         </a>

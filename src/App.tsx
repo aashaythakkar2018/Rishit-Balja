@@ -13,6 +13,8 @@ export default function App() {
   const [password, setPassword] = useState('');
   const [passError, setPassError] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [preloadingComplete, setPreloadingComplete] = useState(false);
+  const [preloadingProgress, setPreloadingProgress] = useState(0);
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showProjects, setShowProjects] = useState(false);
@@ -25,14 +27,24 @@ export default function App() {
   const featImgRef = useRef<HTMLDivElement>(null);
   const featImgInnerRef = useRef<HTMLDivElement>(null);
 
-  // Loader
-  // Remove the auto-loading effect
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setIsLoaded(true);
-  //   }, 2800);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  // Preloader progress effect
+  useEffect(() => {
+    if (!isLoaded && !preloadingComplete) {
+      const duration = 2400; // Slightly longer for better feel
+      const start = Date.now();
+      const timer = setInterval(() => {
+        const timePassed = Date.now() - start;
+        const progress = Math.min(timePassed / duration, 1);
+        setPreloadingProgress(progress);
+        if (progress >= 1) {
+          clearInterval(timer);
+          // Give a small buffer before showing the form
+          setTimeout(() => setPreloadingComplete(true), 600);
+        }
+      }, 16);
+      return () => clearInterval(timer);
+    }
+  }, [isLoaded, preloadingComplete]);
 
   const handleAuth = (e: React.FormEvent) => {
     e.preventDefault();
@@ -263,46 +275,52 @@ export default function App() {
                 rishitbhalja<span className="text-[var(--acc)]">.</span>
                 <motion.div 
                   initial={{ scaleX: 0 }}
-                  animate={{ scaleX: isAuthenticating ? 1 : 0.4 }}
-                  transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
-                  className="absolute -bottom-3 left-0 right-0 h-[2px] bg-[var(--acc)] origin-left opacity-30"
+                  animate={{ scaleX: isAuthenticating ? 1 : preloadingProgress }}
+                  transition={{ duration: 0.1, ease: "linear" }}
+                  className="absolute -bottom-3 left-0 right-0 h-[2px] bg-[var(--acc)] origin-left"
+                  style={{ opacity: preloadingComplete ? 0.3 : 1 }}
                 />
               </motion.div>
 
-              <motion.form 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-                onSubmit={handleAuth}
-                className="w-full flex flex-col gap-4"
-              >
-                <div className="relative group">
-                  <input 
-                    type="password"
-                    placeholder="Enter Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`w-full bg-transparent border-b ${passError ? 'border-[#ff4d4d]' : 'border-[var(--bdr2)]'} py-3 text-[13px] font-[var(--font-syne)] text-[var(--txt)] placeholder:text-[var(--txt3)] placeholder:opacity-50 outline-none transition-all focus:border-[var(--acc)]`}
-                    autoFocus
-                  />
-                  {passError && (
-                    <motion.span 
-                      initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
-                      className="absolute left-0 -bottom-6 text-[10px] text-[#ff4d4d] font-[var(--font-syne)] tracking-wide"
+              <AnimatePresence>
+                {preloadingComplete && (
+                  <motion.form 
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    onSubmit={handleAuth}
+                    className="w-full flex flex-col gap-4"
+                  >
+                    <div className="relative group">
+                      <input 
+                        type="password"
+                        placeholder="Enter Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={`w-full bg-transparent border-b ${passError ? 'border-[#ff4d4d]' : 'border-[var(--bdr2)]'} py-3 text-[13px] font-[var(--font-syne)] text-[var(--txt)] placeholder:text-[var(--txt3)] placeholder:opacity-50 outline-none transition-all focus:border-[var(--acc)]`}
+                        autoFocus
+                      />
+                      {passError && (
+                        <motion.span 
+                          initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
+                          className="absolute left-0 -bottom-6 text-[10px] text-[#ff4d4d] font-[var(--font-syne)] tracking-wide"
+                        >
+                          Incorrect password. Please try again.
+                        </motion.span>
+                      )}
+                    </div>
+                    <button 
+                      type="submit"
+                      disabled={isAuthenticating}
+                      className="mt-6 self-start font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--txt)] border border-[var(--bdr2)] px-8 py-4 rounded-[4px] transition-all duration-300 flex items-center gap-3 group hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-black hover:-translate-y-1"
                     >
-                      Incorrect password. Please try again.
-                    </motion.span>
-                  )}
-                </div>
-                <button 
-                  type="submit"
-                  disabled={isAuthenticating}
-                  className="mt-4 self-start font-[var(--font-syne)] text-[11px] tracking-[0.2em] uppercase text-[var(--txt)] opacity-60 hover:opacity-100 hover:text-[var(--acc)] transition-all flex items-center gap-2 group"
-                >
-                  {isAuthenticating ? 'Authenticating...' : 'Access Site'} 
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </button>
-              </motion.form>
+                      {isAuthenticating ? 'Authenticating...' : 'Access Site'} 
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
             
             <motion.div

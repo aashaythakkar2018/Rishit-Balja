@@ -321,7 +321,7 @@ export default function App() {
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
 
             <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(40px,5vw,72px)] leading-[0.88] tracking-[-0.01em] text-[var(--txt)]">
-              <span className="lw block overflow-hidden"><span className="li block" data-word="Designing premium">Designing premium</span></span>
+              <span className="lw block overflow-hidden"><span className="li block" data-word="designing premium">designing premium</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="digital experiences">digital experiences</span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="where user desire">where user <span className="font-medium">desire</span></span></span>
               <span className="lw block overflow-hidden"><span className="li block" data-word="meets business value.">meets business <span className="font-medium">value</span><span className="text-[var(--acc)] font-bold">.</span></span></span>

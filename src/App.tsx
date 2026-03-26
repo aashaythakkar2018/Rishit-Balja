@@ -499,7 +499,7 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + (i * 0.1), ease: 'easeOut' }}
                 href={link.href}
-                className="contact-row flex items-center justify-between py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-300 group before:content-[''] before:absolute before:inset-0 before:bg-[var(--acc2)] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-400 hover:before:scale-y-100 hover:border-[var(--acc3)]"
+                className="contact-row flex items-center justify-between px-10 py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-300 group before:content-[''] before:absolute before:inset-0 before:bg-[var(--acc2)] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-400 hover:before:scale-y-100 hover:border-[var(--acc3)]"
                 target="_blank"
               >
                 <span className="c-platform font-[var(--font-syne)] text-[11px] tracking-[0.18em] text-[var(--txt3)] relative z-[1]">{link.platform}</span>

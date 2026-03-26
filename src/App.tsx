@@ -19,6 +19,7 @@ export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showProjects, setShowProjects] = useState(false);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
@@ -342,12 +343,14 @@ export default function App() {
 
       {/* NAV */}
       <nav id="mainNav" className="fixed top-0 left-0 right-0 z-[500] h-[68px] flex items-center justify-between px-6 md:px-12 border-b border-[var(--bdr)] bg-[rgba(246,247,249,0.82)] backdrop-blur-[22px] transition-colors duration-500">
-        <a href="#home" className="nav-logo font-[var(--font-syne)] font-extrabold text-[17px] tracking-[0.05em] lowercase text-[var(--txt)]">
+        <a href="#home" className="nav-logo font-[var(--font-syne)] font-extrabold text-[17px] tracking-[0.05em] lowercase text-[var(--txt)] cursor-pointer">
           rishit<em className="text-[var(--acc)] not-italic">.</em>
         </a>
+        
+        {/* Desktop Links */}
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
-          <li><a href="#contact" data-nav="contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
-          <li><button onClick={() => setShowProjects(true)} data-nav="projects" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
+          <li><a href="#contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
+          <li><button onClick={() => setShowProjects(true)} className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
           <li className="relative nav-cv z-[5000]">
             <button 
               onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
@@ -368,7 +371,7 @@ export default function App() {
                     href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" 
                     target="_blank" 
                     onClick={() => setIsCVDropdownOpen(false)}
-                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
                     English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
                   </a>
@@ -377,7 +380,7 @@ export default function App() {
                     href="/Rishit-CV-Swedish.pdf" 
                     target="_blank" 
                     onClick={() => setIsCVDropdownOpen(false)}
-                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] uppercase text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
+                    className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
                     Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
                   </a>
@@ -386,14 +389,55 @@ export default function App() {
             </AnimatePresence>
           </li>
         </ul>
+
+        {/* Mobile Toggle */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden flex flex-col gap-[5px] cursor-pointer border-none bg-transparent p-2 z-[600]"
+        >
+          <span className={`w-6 h-[1.5px] bg-[var(--txt)] transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`}></span>
+          <span className={`w-6 h-[1.5px] bg-[var(--txt)] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+          <span className={`w-6 h-[1.5px] bg-[var(--txt)] transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`}></span>
+        </button>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-0 bg-[var(--bg)] z-[550] flex flex-col items-center justify-center p-12 md:hidden"
+            >
+              <ul className="flex flex-col items-center gap-8 list-none p-0 text-center">
+                <li><a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)]">Contact</a></li>
+                <li><button onClick={() => { setShowProjects(true); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Projects</button></li>
+                <li>
+                   <button 
+                    onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
+                    className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none"
+                  >
+                    CV
+                  </button>
+                  {isCVDropdownOpen && (
+                    <div className="flex flex-col gap-4 mt-4">
+                      <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English ↗</a>
+                      <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish ↗</a>
+                    </div>
+                  )}
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       {/* HERO */}
       <section id="home" className="min-h-screen pt-[68px] relative overflow-hidden">
         <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-68px)]">
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
-
-            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(40px,5vw,72px)] leading-[1.05] tracking-[-0.01em] text-[var(--txt)] py-2">
+            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(44px,6vw,72px)] leading-[1.05] tracking-[-0.01em] text-[var(--txt)] py-2">
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="digital experiences">digital experiences</span></span>
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="where user desire">where user <span className="font-medium">desire</span></span></span>
@@ -403,13 +447,12 @@ export default function App() {
               Turning attention into intent—and intent into measurable outcomes.
             </p>
             <div className="hero-meta flex items-center gap-7">
-
               <a href="#contact" className="cta-btn font-[var(--font-syne)] text-[12px] font-light tracking-[0.12em] text-[#080808] border border-[#080808] px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]">
                 Let's Connect
               </a>
             </div>
           </div>
-          <div className="hero-R hidden md:block relative overflow-hidden">
+          <div className="hero-R block relative overflow-hidden h-[50vh] md:h-auto">
             <div className="hero-img-full w-full h-full absolute inset-0 z-[5]">
               <img 
                 src={heroPortrait} 
@@ -419,7 +462,7 @@ export default function App() {
               />
             </div>
             
-            <div className="hero-overlays absolute inset-0 p-12 flex flex-col justify-end pointer-events-none z-[10]">
+            <div className="hero-overlays absolute inset-0 p-6 md:p-12 flex flex-col justify-end pointer-events-none z-[10]">
               <div className="font-[var(--font-syne)] text-[11px] tracking-[0.1em] text-[var(--txt3)] text-right">© 2026 Rishit Bhalja</div>
             </div>
           </div>
@@ -479,7 +522,7 @@ export default function App() {
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
 
-          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(60px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Social<em className="not-italic text-[var(--acc)]">s</em></h2>
+          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(48px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Social<em className="not-italic text-[var(--acc)]">s</em></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

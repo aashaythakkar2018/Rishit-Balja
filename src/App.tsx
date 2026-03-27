@@ -437,7 +437,7 @@ export default function App() {
       <section id="home" className="min-h-screen pt-[68px] relative overflow-hidden">
         <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-68px)]">
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
-            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(44px,6vw,72px)] leading-[1.05] tracking-[-0.01em] text-[var(--txt)] py-2">
+            <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(44px,6vw,72px)] leading-[1.05] tracking-[-0.01em] text-[var(--txt)] py-2 text-justify [text-align-last:justify] md:text-left md:[text-align-last:left]">
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="Designing premium">Designing premium</span></span>
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="digital experiences">digital experiences</span></span>
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="where user desire">where user <span className="font-medium">desire</span></span></span>

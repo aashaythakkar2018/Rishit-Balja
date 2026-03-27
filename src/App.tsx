@@ -399,39 +399,39 @@ export default function App() {
           <span className={`w-6 h-[1.5px] bg-[var(--txt)] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
           <span className={`w-6 h-[1.5px] bg-[var(--txt)] transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`}></span>
         </button>
-
-        {/* Mobile Menu Overlay */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-0 bg-[var(--bg)] z-[550] flex flex-col items-center justify-center p-12 md:hidden"
-            >
-              <ul className="flex flex-col items-center gap-8 list-none p-0 text-center">
-                <li><a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)]">Contact</a></li>
-                <li><button onClick={() => { setShowProjects(true); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Projects</button></li>
-                <li>
-                   <button 
-                    onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
-                    className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none"
-                  >
-                    CV
-                  </button>
-                  {isCVDropdownOpen && (
-                    <div className="flex flex-col gap-4 mt-4">
-                      <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English ↗</a>
-                      <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish ↗</a>
-                    </div>
-                  )}
-                </li>
-              </ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Menu Overlay — moved outside fixed-height nav */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-[rgba(246,247,249,0.92)] backdrop-blur-xl z-[550] flex flex-col items-center justify-center p-12 md:hidden"
+          >
+            <ul className="flex flex-col items-center gap-8 list-none p-0 text-center">
+              <li><a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)]">Contact</a></li>
+              <li><button onClick={() => { setShowProjects(true); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Projects</button></li>
+              <li>
+                 <button 
+                  onClick={() => setIsCVDropdownOpen(!isCVDropdownOpen)}
+                  className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none"
+                >
+                  CV
+                </button>
+                {isCVDropdownOpen && (
+                  <div className="flex flex-col gap-4 mt-4">
+                    <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English ↗</a>
+                    <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish ↗</a>
+                  </div>
+                )}
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HERO */}
       <section id="home" className="min-h-screen pt-[68px] relative overflow-hidden">

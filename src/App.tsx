@@ -265,7 +265,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
             className="fixed inset-0 z-[9999] bg-[var(--bg)] flex flex-col items-center justify-center"
           >
-            <div className="flex flex-col items-center w-full max-w-[400px] px-6">
+            <div className="flex flex-col items-center w-fit px-6">
               <motion.div
                 initial={{ opacity: 0, y: 20, filter: 'blur(10px)', letterSpacing: '-0.02em' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)', letterSpacing: '0.01em' }}

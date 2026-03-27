@@ -298,13 +298,13 @@ export default function App() {
                         placeholder="Enter Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className={`w-full bg-transparent border-b ${passError ? 'border-[#ff4d4d]' : 'border-[var(--bdr2)]'} py-3 text-[13px] font-[var(--font-syne)] text-[var(--txt)] placeholder:text-[var(--txt3)] placeholder:opacity-50 outline-none transition-all focus:border-[var(--acc)]`}
+                        className={`w-full bg-transparent border-b ${passError ? 'border-[#ff4d4d]' : 'border-[var(--bdr2)]'} py-3 text-[13px] font-[var(--font-syne)] text-[var(--txt)] text-center placeholder:text-[var(--txt3)] placeholder:opacity-50 outline-none transition-all focus:border-[var(--acc)]`}
                         autoFocus
                       />
                       {passError && (
                         <motion.span 
-                          initial={{ opacity: 0, x: -5 }} animate={{ opacity: 1, x: 0 }}
-                          className="absolute left-0 -bottom-6 text-[10px] text-[#ff4d4d] font-[var(--font-syne)] tracking-wide"
+                          initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
+                          className="absolute left-0 right-0 -bottom-6 text-[10px] text-[#ff4d4d] font-[var(--font-syne)] tracking-wide text-center"
                         >
                           Incorrect password. Please try again.
                         </motion.span>
@@ -313,7 +313,7 @@ export default function App() {
                     <button 
                       type="submit"
                       disabled={isAuthenticating}
-                      className="mt-6 self-start font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--txt)] border border-[var(--bdr2)] px-8 py-4 rounded-[4px] transition-all duration-300 flex items-center gap-3 group hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-black hover:-translate-y-1"
+                      className="mt-6 self-center font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--txt)] border border-[var(--bdr2)] px-8 py-4 rounded-[4px] transition-all duration-300 flex items-center gap-3 group hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-black hover:-translate-y-1"
                     >
                       {isAuthenticating ? 'Authenticating...' : 'Access Site'} 
                       <span className="group-hover:translate-x-1 transition-transform">→</span>

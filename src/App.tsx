@@ -238,8 +238,8 @@ export default function App() {
   return (
     <>
       {/* CURSOR — always rendered regardless of view */}
-      <div ref={cursorDotRef} className="cdot fixed w-[7px] h-[7px] bg-[var(--acc)] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-[left,top] mix-blend-difference"></div>
-      <div ref={cursorRingRef} className="cring fixed w-[38px] h-[38px] border border-[rgba(255,99,33,0.35)] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,border-color] duration-[0.28s] ease-[var(--ease)] will-change-[left,top]"></div>
+      <div ref={cursorDotRef} className="cdot hidden md:block fixed w-[7px] h-[7px] bg-[var(--acc)] rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-[left,top] mix-blend-difference"></div>
+      <div ref={cursorRingRef} className="cring hidden md:block fixed w-[38px] h-[38px] border border-[rgba(255,99,33,0.35)] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,border-color] duration-[0.28s] ease-[var(--ease)] will-change-[left,top]"></div>
 
       {showProjects ? (
         <ProjectsPage onBack={(targetId?: string) => { 

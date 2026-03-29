@@ -31,7 +31,7 @@ export default function App() {
   // Preloader progress effect
   useEffect(() => {
     if (!isLoaded && !preloadingComplete) {
-      const duration = 2400; // Slightly longer for better feel
+      const duration = 400; // Faster loading as requested
       const start = Date.now();
       const timer = setInterval(() => {
         const timePassed = Date.now() - start;
@@ -40,7 +40,7 @@ export default function App() {
         if (progress >= 1) {
           clearInterval(timer);
           // Give a small buffer before showing the form
-          setTimeout(() => setPreloadingComplete(true), 600);
+          setTimeout(() => setPreloadingComplete(true), 150);
         }
       }, 16);
       return () => clearInterval(timer);
@@ -52,10 +52,9 @@ export default function App() {
     if (password === 'Keepitsimple*123') {
       setIsAuthenticating(true);
       setPassError(false);
-      // Brief delay for the aesthetic transition
       setTimeout(() => {
         setIsLoaded(true);
-      }, 800);
+      }, 200);
     } else {
       setPassError(true);
       setTimeout(() => setPassError(false), 2000);
@@ -313,10 +312,9 @@ export default function App() {
                     <button 
                       type="submit"
                       disabled={isAuthenticating}
-                      className="mt-6 self-center font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[var(--txt)] border border-[var(--bdr2)] px-8 py-4 rounded-[4px] transition-all duration-300 flex items-center gap-3 group hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-black hover:-translate-y-1"
+                      className="mt-6 self-center font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[#080808] border border-[#080808] bg-transparent px-8 py-[12px] rounded-[2px] transition-all duration-300 flex items-center gap-3 group hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-[#080808] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]"
                     >
                       {isAuthenticating ? 'Authenticating...' : 'Access Site'} 
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </button>
                   </motion.form>
                 )}
@@ -373,7 +371,7 @@ export default function App() {
                     onClick={() => setIsCVDropdownOpen(false)}
                     className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
-                    English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                    English
                   </a>
                   <div className="h-[1px] bg-[var(--bdr)] mx-4 my-[2px]"></div>
                   <a 
@@ -382,7 +380,7 @@ export default function App() {
                     onClick={() => setIsCVDropdownOpen(false)}
                     className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
-                    Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                    Swedish
                   </a>
                 </motion.div>
               )}
@@ -423,8 +421,8 @@ export default function App() {
                 </button>
                 {isCVDropdownOpen && (
                   <div className="flex flex-col gap-4 mt-4">
-                    <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English ↗</a>
-                    <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish ↗</a>
+                    <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English</a>
+                    <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish</a>
                   </div>
                 )}
               </li>
@@ -434,8 +432,8 @@ export default function App() {
       </AnimatePresence>
 
       {/* HERO */}
-      <section id="home" className="min-h-screen pt-[68px] relative overflow-hidden">
-        <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100vh-68px)]">
+      <section id="home" className="min-h-[100dvh] pt-[68px] relative overflow-hidden">
+        <div className="hero-wrap grid grid-cols-1 md:grid-cols-2 min-h-[calc(100dvh-68px)]">
           <div className="hero-L flex flex-col justify-center md:justify-end p-6 md:p-12 md:border-r border-[var(--bdr)] relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-[linear-gradient(var(--bdr)_1px,transparent_1px),linear-gradient(90deg,var(--bdr)_1px,transparent_1px)] before:bg-[60px_60px] before:opacity-60 before:pointer-events-none">
             <h1 ref={heroHlRef} className="hero-hl font-[var(--font-swifter)] font-light text-[clamp(44px,6vw,72px)] leading-[1.05] tracking-[-0.01em] text-[var(--txt)] py-2 text-justify [text-align-last:justify] md:text-left md:[text-align-last:left]">
               <span className="lw block overflow-hidden pb-4 mb-[-1rem]"><span className="li block" data-word="Designing premium">Designing premium</span></span>
@@ -452,7 +450,7 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="hero-R block relative overflow-hidden h-[50vh] md:h-auto">
+          <div className="hero-R block relative overflow-hidden h-[50dvh] md:h-auto">
             <div className="hero-img-full w-full h-full absolute inset-0 z-[5]">
               <img 
                 src={heroPortrait} 
@@ -500,16 +498,11 @@ export default function App() {
                   </div>
                   <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,8,8,0.85)_0%,transparent_50%)] opacity-0 transition-opacity duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:opacity-100 pointer-events-none"></div>
                   <div className="absolute top-4 left-4 font-[var(--font-swifter)] text-[12px] tracking-[0.14em] text-[var(--txt3)] z-[2] mix-blend-difference">{proj.id}</div>
-                  <div className="absolute bottom-6 left-6 right-6 opacity-0 translate-y-3 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] z-[2] group-hover:opacity-100 group-hover:translate-y-0 pointer-events-none">
-                    <p className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] text-[rgba(255,120,60,0.9)] mb-1">{proj.type}</p>
-                    <h3 className="font-[var(--font-swifter)] font-light text-[20px] tracking-[0.02em] text-[var(--bg)]">{proj.title}</h3>
-                  </div>
                 </div>
                 <div className="proj-info p-6 relative bg-[var(--bg)] transition-colors duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:bg-[var(--bg2)]">
                   <div className="font-[var(--font-swifter)] text-[11px] tracking-[0.14em] text-[var(--txt3)] mb-2 group-hover:-translate-y-1 transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)]">{proj.year}</div>
                   <div className="font-[var(--font-swifter)] font-light text-[22px] tracking-[0.03em] text-[var(--txt)] mb-1 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:text-[var(--acc)] group-hover:-translate-y-1">{proj.title}</div>
                   <div className="font-[var(--font-syne)] text-[10px] tracking-[0.12em] text-[var(--txt3)] transition-transform duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:-translate-y-1">{proj.type}</div>
-                  <div className="absolute right-[1.4rem] top-[1.4rem] w-[34px] h-[34px] border border-[var(--bdr2)] rounded-full flex items-center justify-center text-[14px] text-[var(--txt3)] rotate-45 transition-all duration-[0.6s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:rotate-0 group-hover:border-[var(--acc)] group-hover:bg-[var(--acc)] group-hover:text-[var(--bg)] group-hover:-translate-y-1">↗</div>
                 </div>
               </motion.div>
             ))}
@@ -542,12 +535,11 @@ export default function App() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + (i * 0.1), ease: 'easeOut' }}
                 href={link.href}
-                className="contact-row flex items-center justify-between px-10 py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-300 group before:content-[''] before:absolute before:inset-0 before:bg-[var(--acc2)] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-400 hover:before:scale-y-100 hover:border-[var(--acc3)]"
+                className="contact-row flex items-center justify-between px-6 md:px-10 py-6 border-b border-[var(--bdr)] relative overflow-hidden transition-all duration-300 group before:content-[''] before:absolute before:inset-0 before:bg-[var(--acc2)] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-400 hover:before:scale-y-100 hover:border-[var(--acc3)]"
                 target="_blank"
               >
                 <span className="c-platform font-[var(--font-syne)] text-[11px] tracking-[0.18em] text-[var(--txt3)] relative z-[1]">{link.platform}</span>
                 <span className="c-url font-[var(--font-swifter)] text-[22px] font-medium tracking-[0.03em] text-[var(--txt)] transition-colors duration-250 relative z-[1]">{link.url}</span>
-                <span className="c-arrow text-[18px] text-[var(--txt3)] rotate-45 transition-all duration-400 ease-[var(--ease)] relative z-[1] group-hover:rotate-0 group-hover:text-[var(--acc)]">↗</span>
               </motion.a>
             ))}
           </motion.div>

@@ -195,7 +195,7 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
                     onClick={() => setIsCVDropdownOpen(false)}
                     className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
-                    English <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                    English
                   </a>
                   <div className="h-[1px] bg-[var(--bdr)] mx-4 my-[2px]"></div>
                   <a
@@ -204,7 +204,7 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
                     onClick={() => setIsCVDropdownOpen(false)}
                     className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.14em] text-[var(--txt2)] px-5 py-[10px] hover:bg-[var(--bg2)] hover:text-[var(--acc)] transition-colors flex justify-between items-center group/btn"
                   >
-                    Swedish <span className="opacity-0 group-hover/btn:opacity-100 transition-opacity">↗</span>
+                    Swedish
                   </a>
                 </motion.div>
               )}
@@ -245,8 +245,8 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
                 </button>
                 {isCVDropdownOpen && (
                   <div className="flex flex-col gap-4 mt-4">
-                    <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English ↗</a>
-                    <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish ↗</a>
+                    <a href="https://cdn.prod.website-files.com/625569d4ab664a2be0140994/62a7873d1f8a98ba088a241e_RishitBhaljaCV.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">English</a>
+                    <a href="/Rishit-CV-Swedish.pdf" target="_blank" className="font-[var(--font-syne)] text-[12px] tracking-[0.1em] text-[var(--acc)]">Swedish</a>
                   </div>
                 )}
               </li>
@@ -264,7 +264,7 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
             transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="font-[var(--font-swifter)] font-light text-[clamp(44px,8vw,110px)] leading-[0.88] tracking-[-0.02em] text-[var(--txt)]"
           >
-            The Projects
+            Projects<span className="text-[var(--acc)]">.</span>
           </motion.h1>
 
       </section>
@@ -291,30 +291,6 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
                 </h2>
               </div>
               <p className="max-w-[400px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
-            </motion.div>
-
-            {/* Cover Image */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10% 0px' }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.77, 0, 0.175, 1] }}
-              className="max-w-[1100px] mx-auto mb-16 rounded-[4px] overflow-hidden border border-[var(--bdr)]"
-            >
-              <motion.div
-                initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-                whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-                viewport={{ once: true, margin: '-10% 0px' }}
-                transition={{ duration: 0.8, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
-                className="w-full h-auto group"
-              >
-                <img
-                  src={proj.cover}
-                  alt={proj.title}
-                  className="w-full h-auto object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] hover:scale-[1.03] cursor-zoom-in relative z-10"
-                  onClick={() => setSelectedImage(proj.cover)}
-                />
-              </motion.div>
             </motion.div>
 
             {/* Challenge + What I Did + Impact */}
@@ -350,9 +326,9 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
               </div>
             </motion.div>
 
-            {/* Gallery */}
-            <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-              {proj.images.map((img, i) => (
+            {/* Gallery (Cover + Images) */}
+            <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[proj.cover, ...proj.images].map((img, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 30 }}
@@ -388,9 +364,9 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
         <div className="text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — Experience Designer</div>
         <button
           onClick={onBack}
-          className="mt-2 font-[var(--font-syne)] text-[11px] font-light tracking-[0.12em] text-[var(--bg)] bg-[var(--acc)] px-6 py-[10px] rounded-[2px] transition-all duration-250 hover:bg-[#d6ff8a] hover:-translate-y-[2px]"
+          className="mt-2 font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[#080808] border border-[#080808] bg-transparent px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-[#080808] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]"
         >
-          ← Back to Home
+          Back to Home
         </button>
       </footer>
       <AnimatePresence>

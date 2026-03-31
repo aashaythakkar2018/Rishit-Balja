@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, AnimatePresence } from 'motion/react';
+import ImageComparisonSlider from './ImageComparisonSlider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,14 @@ const projects = [
       '/projects/driving-behaviour/img2.png',
       '/projects/driving-behaviour/img3.png',
     ],
+    labeledImages: [
+      { src: '/projects/driving-behaviour/cover.png', label: 'Overview' },
+      { src: '/projects/driving-behaviour/coaching.svg', label: 'Coaching & Gamification' },
+      { src: '/projects/driving-behaviour/img1.png', label: 'Customisation Feature' },
+      { src: '/projects/driving-behaviour/img2.png', label: 'Final Deliverable' },
+      { src: '/projects/driving-behaviour/img3.png', label: 'New Driver Page' },
+      { src: '/projects/driving-behaviour/hero.svg', label: 'Old UI' },
+    ],
   },
   {
     id: '02',
@@ -58,6 +67,13 @@ const projects = [
       '/projects/charging-service/img2.png',
       '/projects/charging-service/img3.png',
     ],
+    labeledImages: [
+      { src: '/projects/charging-service/cover.png', label: 'Brand Design' },
+      { src: '/projects/charging-service/img1.png', label: 'EV Dashboard' },
+      { src: '/projects/charging-service/img2.png', label: 'Research of Premium Experience' },
+      { src: '/projects/charging-service/img3.png', label: 'Research' },
+      { src: '/projects/charging-service/img4.png', label: 'USP Feature' },
+    ],
   },
   {
     id: '03',
@@ -78,12 +94,25 @@ const projects = [
       'Shaped product direction for a scalable, compliance-driven service',
       'Established a foundation for reducing user error and improving trust in regulated workflows',
     ],
-    cover: '/projects/tachograph.jpg',
+    cover: '/projects/tachograph.png',
     images: [
       '/projects/tachograph-service/img1.png',
       '/projects/tachograph-service/img2.png',
       '/projects/tachograph-service/img3.png',
     ],
+    labeledImages: [
+      { src: '/projects/tachograph-service/cover.png', label: 'CX Journey' },
+      { src: '/projects/tachograph-service/hero.svg', label: 'Final Deliverable' },
+      { src: '/projects/tachograph-service/img1.png', label: 'New UI' },
+      { src: '/projects/tachograph-service/img2.png', label: 'Old UI' },
+      { src: '/projects/tachograph-service/img3.png', label: 'Optimisation of Data' },
+    ],
+    compareImages: {
+      before: '/projects/tachograph-service/img2.png',
+      after: '/projects/tachograph-service/img1.png',
+      beforeLabel: 'Old UI',
+      afterLabel: 'New UI',
+    },
   },
   {
     id: '04',
@@ -110,6 +139,12 @@ const projects = [
       '/projects/flygkraft/img2.png',
       '/projects/flygkraft/img3.png',
     ],
+    labeledImages: [
+      { src: '/projects/flygkraft/cover.png', label: 'Brand Guide Cover' },
+      { src: '/projects/flygkraft/img1.png', label: 'Font Pairing' },
+      { src: '/projects/flygkraft/img2.png', label: 'Image Guidelines' },
+      { src: '/projects/flygkraft/img3.png', label: 'Logo Inspiration' },
+    ],
   },
 ];
 
@@ -117,7 +152,7 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
   const pageRef = useRef<HTMLDivElement>(null);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<{ src: string; label?: string } | null>(null);
 
   useEffect(() => {
     const handleGlobalClick = (e: MouseEvent) => {
@@ -326,34 +361,98 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
               </div>
             </motion.div>
 
-            {/* Gallery (Cover + Images) */}
-            <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[proj.cover, ...proj.images].map((img, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-10% 0px' }}
-                  transition={{ duration: 0.6, delay: i * 0.1, ease: [0.77, 0, 0.175, 1] }}
-                  className="rounded-[4px] overflow-hidden border border-[var(--bdr)] aspect-[4/3] group"
-                >
+            {/* Gallery — labeled (hover-reveal name) or default */}
+            {'labeledImages' in proj && proj.labeledImages ? (
+              <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {(proj.labeledImages as Array<{ src: string; label: string }>).map((img, i) => (
                   <motion.div
-                    initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
-                    whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-10% 0px' }}
-                    transition={{ duration: 0.8, delay: 0.2 + (i * 0.1), ease: [0.77, 0, 0.175, 1] }}
-                    className="w-full h-full"
+                    transition={{ duration: 0.6, delay: i * 0.08, ease: [0.77, 0, 0.175, 1] }}
+                    className="relative rounded-[4px] overflow-hidden border border-[var(--bdr)] aspect-[4/3] group cursor-zoom-in"
+                    onClick={() => setSelectedImage({ src: img.src, label: img.label })}
                   >
+                    {/* Image */}
                     <img
-                      src={img}
-                      alt={`${proj.title} ${i + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.05] cursor-zoom-in relative z-10"
-                      onClick={() => setSelectedImage(img)}
+                      src={img.src}
+                      alt={img.label}
+                      className="w-full h-full object-cover object-top transition-transform duration-[0.7s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.04]"
                     />
+                    {/* Subtle dark overlay on hover */}
+                    <div className="absolute inset-0 bg-[rgba(8,8,8,0)] group-hover:bg-[rgba(8,8,8,0.18)] transition-all duration-500 pointer-events-none" />
+                    {/* Label — hidden below, slides up on hover. Clean dark bar, no fill */}
+                    <div className="absolute inset-x-0 bottom-0 overflow-hidden pointer-events-none">
+                      <div className="translate-y-full group-hover:translate-y-0 transition-transform duration-[0.4s] ease-[cubic-bezier(0.22,1,0.36,1)] bg-[rgba(8,8,8,0.68)] backdrop-blur-sm border-t border-[rgba(255,255,255,0.06)] px-5 py-3 flex items-center justify-between">
+                        <span className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.2em] uppercase text-white/90">
+                          {img.label}
+                        </span>
+                      </div>
+                    </div>
                   </motion.div>
-                </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[proj.cover, ...proj.images].map((img, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-10% 0px' }}
+                    transition={{ duration: 0.6, delay: i * 0.1, ease: [0.77, 0, 0.175, 1] }}
+                    className="rounded-[4px] overflow-hidden border border-[var(--bdr)] aspect-[4/3] group"
+                  >
+                    <motion.div
+                      initial={{ clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)' }}
+                      whileInView={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+                      viewport={{ once: true, margin: '-10% 0px' }}
+                      transition={{ duration: 0.8, delay: 0.2 + (i * 0.1), ease: [0.77, 0, 0.175, 1] }}
+                      className="w-full h-full"
+                    >
+                      <img
+                        src={img}
+                        alt={`${proj.title} ${i + 1}`}
+                        className="w-full h-full object-cover transition-transform duration-[0.8s] ease-[cubic-bezier(0.77,0,0.175,1)] group-hover:scale-[1.05] cursor-zoom-in relative z-10"
+                        onClick={() => setSelectedImage({ src: img })}
+                      />
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+
+            {/* UI Comparison Slider — only shown for projects with compareImages */}
+            {'compareImages' in proj && proj.compareImages && (
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-10% 0px' }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
+                className="max-w-[1100px] mx-auto mt-12"
+              >
+                {/* Section header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 pb-6 border-b border-[var(--bdr)]">
+                  <div>
+                    <div className="font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] text-[var(--acc)] uppercase mb-2">UI Evolution</div>
+                    <h3 className="font-[var(--font-swifter)] font-light text-[clamp(28px,3.5vw,42px)] leading-[1] tracking-[-0.01em] text-[var(--txt)]">
+                      Before &amp; After
+                    </h3>
+                  </div>
+                  <p className="text-[12px] font-light text-[var(--txt3)] leading-[1.85] max-w-[360px] md:text-right">
+                    Drag the handle left or right to reveal the transformation from the old interface to the redesigned experience.
+                  </p>
+                </div>
+
+                <ImageComparisonSlider
+                  beforeImage={(proj.compareImages as { before: string; after: string; beforeLabel: string; afterLabel: string }).before}
+                  afterImage={(proj.compareImages as { before: string; after: string; beforeLabel: string; afterLabel: string }).after}
+                  beforeLabel={(proj.compareImages as { before: string; after: string; beforeLabel: string; afterLabel: string }).beforeLabel}
+                  afterLabel={(proj.compareImages as { before: string; after: string; beforeLabel: string; afterLabel: string }).afterLabel}
+                />
+              </motion.div>
+            )}
           </article>
         ))}
       </section>
@@ -377,17 +476,27 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-[99999] bg-[rgba(10,10,10,0.95)] flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+            className="fixed inset-0 z-[99999] bg-[rgba(10,10,10,0.96)] flex flex-col items-center justify-center gap-5 p-4 md:p-12 cursor-zoom-out"
           >
             <motion.img
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
               transition={{ ease: [0.77, 0, 0.175, 1], duration: 0.4 }}
-              src={selectedImage}
-              alt="Enlarged view"
-              className="max-w-full max-h-full object-contain shadow-2xl rounded-[4px] cursor-zoom-out"
+              src={selectedImage.src}
+              alt={selectedImage.label ?? 'Enlarged view'}
+              className="max-w-full max-h-[82vh] object-contain shadow-2xl rounded-[4px] cursor-zoom-out"
             />
+            {selectedImage.label && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="font-[var(--font-syne)] text-[10px] font-medium tracking-[0.25em] uppercase text-white/50 text-center"
+              >
+                {selectedImage.label}
+              </motion.div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

@@ -515,7 +515,7 @@ export default function App() {
       <section id="contact" className="px-6 md:px-12 pt-28 border-t border-[var(--bdr)]">
         <div className="contact-inner flex flex-col items-center text-center pb-20 border-b border-[var(--bdr)]">
 
-          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(48px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Social<em className="not-italic text-[var(--acc)]">s</em></h2>
+          <h2 className="contact-hl fu d1 font-[var(--font-swifter)] font-light text-[clamp(48px,8vw,118px)] leading-[0.86] tracking-[-0.02em] mb-12">Socials<span className="text-[var(--acc)]">.</span></h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

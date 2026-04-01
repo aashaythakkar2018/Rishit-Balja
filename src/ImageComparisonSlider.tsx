@@ -131,22 +131,10 @@ export default function ImageComparisonSlider({
             draggable={false}
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          {/* After label watermark */}
-          <div
-            className="absolute top-4 right-4 font-[var(--font-syne)] text-[9px] font-bold tracking-[0.2em] uppercase text-[#080808] bg-[var(--acc)] px-2 py-1 rounded-[2px]"
-            style={{ opacity: position > 20 ? 1 : 0, transition: 'opacity 0.3s' }}
-          >
-            {afterLabel}
-          </div>
+          {/* Removed inner after label */}
         </div>
 
-        {/* Before label watermark */}
-        <div
-          className="absolute top-4 left-4 font-[var(--font-syne)] text-[9px] font-bold tracking-[0.2em] uppercase text-white bg-[rgba(8,8,8,0.55)] backdrop-blur-sm px-2 py-1 rounded-[2px]"
-          style={{ opacity: position < 80 ? 1 : 0, transition: 'opacity 0.3s' }}
-        >
-          {beforeLabel}
-        </div>
+        {/* Removed inner before label */}
 
         {/* Divider line */}
         <div

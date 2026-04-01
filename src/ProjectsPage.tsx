@@ -36,10 +36,10 @@ const projects = [
     labeledImages: [
       { src: '/projects/driving-behaviour/cover.png', label: 'Overview' },
       { src: '/projects/driving-behaviour/coaching.svg', label: 'Coaching & Gamification' },
-      { src: '/projects/driving-behaviour/img1.png', label: 'Customisation Feature' },
-      { src: '/projects/driving-behaviour/img2.png', label: 'Final Deliverable' },
-      { src: '/projects/driving-behaviour/img3.png', label: 'New Driver Page' },
-      { src: '/projects/driving-behaviour/hero.svg', label: 'Old UI' },
+      { src: '/projects/driving-behaviour/img1.png', label: 'Old UI' },
+      { src: '/projects/driving-behaviour/img2.png', label: 'New Driver Page' },
+      { src: '/projects/driving-behaviour/img3.png', label: 'Customisation Feature' },
+      { src: '/projects/driving-behaviour/hero.svg', label: 'Final Deliverable' },
     ],
   },
   {
@@ -68,11 +68,11 @@ const projects = [
       '/projects/charging-service/img3.png',
     ],
     labeledImages: [
-      { src: '/projects/charging-service/cover.png', label: 'Brand Design' },
-      { src: '/projects/charging-service/img1.png', label: 'EV Dashboard' },
-      { src: '/projects/charging-service/img2.png', label: 'Research of Premium Experience' },
-      { src: '/projects/charging-service/img3.png', label: 'Research' },
-      { src: '/projects/charging-service/img4.png', label: 'USP Feature' },
+      { src: '/projects/charging-service/cover.png', label: 'EV Dashboard' },
+      { src: '/projects/charging-service/img1.png', label: 'USP Feature' },
+      { src: '/projects/charging-service/img2.png', label: 'Brand Design' },
+      { src: '/projects/charging-service/img3.png', label: 'Research of premium experience' },
+      { src: '/projects/charging-service/img4.png', label: 'Research' },
     ],
   },
   {
@@ -101,9 +101,9 @@ const projects = [
       '/projects/tachograph-service/img3.png',
     ],
     labeledImages: [
-      { src: '/projects/tachograph-service/cover.png', label: 'CX Journey' },
+      { src: '/projects/tachograph-service/cover.png', label: 'New UI' },
       { src: '/projects/tachograph-service/hero.svg', label: 'Final Deliverable' },
-      { src: '/projects/tachograph-service/img1.png', label: 'New UI' },
+      { src: '/projects/tachograph-service/img1.png', label: 'CX Journey' },
       { src: '/projects/tachograph-service/img2.png', label: 'Old UI' },
       { src: '/projects/tachograph-service/img3.png', label: 'Optimisation of Data' },
     ],
@@ -141,10 +141,14 @@ const projects = [
     ],
     labeledImages: [
       { src: '/projects/flygkraft/cover.png', label: 'Brand Guide Cover' },
-      { src: '/projects/flygkraft/img1.png', label: 'Font Pairing' },
-      { src: '/projects/flygkraft/img2.png', label: 'Image Guidelines' },
-      { src: '/projects/flygkraft/img3.png', label: 'Logo Inspiration' },
+      { src: '/projects/flygkraft/img1.png', label: 'Logo inspiration' },
+      { src: '/projects/flygkraft/img2.png', label: 'Design Draft' },
+      { src: '/projects/flygkraft/img3.png', label: 'Font pairing' },
     ],
+    pdfLink: {
+      label: 'Flygkraft style guide',
+      url: '/projects/flygkraft/Flygkraft-Style-Guide.pdf',
+    },
   },
 ];
 
@@ -335,7 +339,18 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
                   <em className="not-italic text-[var(--txt3)] [-webkit-text-stroke:1px_rgba(8,8,8,0.15)]">{proj.subtitle}</em>
                 </h2>
               </div>
-              <p className="max-w-[400px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
+              <div className="max-w-[400px]">
+                <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
+                {('pdfLink' in proj) && proj.pdfLink && (
+                  <a 
+                    href={(proj.pdfLink as { url: string; label: string }).url} 
+                    download
+                    className="inline-block mt-4 text-[var(--txt)] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em]"
+                  >
+                    {(proj.pdfLink as { url: string; label: string }).label}
+                  </a>
+                )}
+              </div>
             </motion.div>
 
             {/* Challenge + What I Did + Impact */}

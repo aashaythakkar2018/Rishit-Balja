@@ -148,7 +148,7 @@ const projects = [
   },
 ];
 
-export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) => void }) {
+export default function ProjectsPage({ activeProjectId, onBack }: { activeProjectId?: string | null; onBack: (targetId?: string) => void }) {
   const pageRef = useRef<HTMLDivElement>(null);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -162,7 +162,17 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
       }
     };
     window.addEventListener('click', handleGlobalClick);
-    window.scrollTo(0, 0);
+    if (activeProjectId) {
+      setTimeout(() => {
+        const el = document.getElementById(`project-${activeProjectId}`);
+        if (el) {
+          const targetPosition = el.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top: targetPosition, behavior: 'instant' });
+        }
+      }, 50);
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     const revObs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -307,7 +317,7 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
       {/* PROJECT LIST */}
       <section className="px-6 md:px-12">
         {projects.map((proj, pi) => (
-          <article key={proj.id} className={`py-24 border-b border-[var(--bdr)] ${pi % 2 === 1 ? 'bg-[var(--bg2)]' : ''}`}>
+          <article id={`project-${proj.id}`} key={proj.id} className={`py-24 border-b border-[var(--bdr)] ${pi % 2 === 1 ? 'bg-[var(--bg2)]' : ''}`}>
             {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -462,10 +472,10 @@ export default function ProjectsPage({ onBack }: { onBack: (targetId?: string) =
         <div className="font-[var(--font-syne)] font-extrabold text-[14px] tracking-[0.07em] lowercase">rishitbhalja</div>
         <div className="text-[12px] text-[var(--txt3)] tracking-[0.05em]">© 2026 — Experience Designer</div>
         <button
-          onClick={onBack}
+          onClick={() => onBack('projects')}
           className="mt-2 font-[var(--font-syne)] text-[11px] font-bold tracking-[0.2em] uppercase text-[#080808] border border-[#080808] bg-transparent px-8 py-[12px] rounded-[2px] transition-all duration-300 hover:bg-[var(--acc)] hover:border-[var(--acc)] hover:text-[#080808] hover:-translate-y-[2px] shadow-[0_4px_15px_rgba(8,8,8,0.03)] hover:shadow-[0_8px_20px_rgba(255,99,33,0.15)]"
         >
-          Back to Home
+          Back to Projects
         </button>
       </footer>
       <AnimatePresence>

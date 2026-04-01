@@ -18,6 +18,7 @@ export default function App() {
 
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showProjects, setShowProjects] = useState(false);
+  const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
@@ -241,7 +242,7 @@ export default function App() {
       <div ref={cursorRingRef} className="cring hidden md:block fixed w-[38px] h-[38px] border border-[rgba(255,99,33,0.35)] rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 transition-[width,height,border-color] duration-[0.28s] ease-[var(--ease)] will-change-[left,top]"></div>
 
       {showProjects ? (
-        <ProjectsPage onBack={(targetId?: string) => { 
+        <ProjectsPage activeProjectId={activeProjectId} onBack={(targetId?: string) => { 
           setShowProjects(false); 
           setTimeout(() => {
             const id = targetId || 'projects';
@@ -486,7 +487,10 @@ export default function App() {
               <motion.div
                 key={i}
                 className="border border-[var(--bdr)] rounded-[2px] overflow-hidden relative cursor-pointer bg-[var(--bg)] group"
-                onClick={() => setShowProjects(true)}
+                onClick={() => {
+                  setActiveProjectId(proj.id);
+                  setShowProjects(true);
+                }}
               >
                 <div className="proj-img-wrap overflow-hidden aspect-[4/3] relative">
                   <div className="w-full h-full">

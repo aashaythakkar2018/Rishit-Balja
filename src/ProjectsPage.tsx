@@ -1,3 +1,4 @@
+// Build update: 2026-04-02 12:40
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -341,13 +342,11 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
               </div>
               <div className="max-w-[400px]">
                 <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
-                {proj.id === '04' && (
+                {(proj.id === '04') && (
                   <a 
-                    href="/projects/flygkraft/Flygkraft-Style-Guide.pdf"
+                    href="/projects/flygkraft/Flygkraft-Style-Guide.pdf" 
                     download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-4 text-[#080808] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em] cursor-pointer"
+                    className="inline-block mt-4 text-[var(--txt)] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em]"
                   >
                     Link to Download the Style Guide
                   </a>

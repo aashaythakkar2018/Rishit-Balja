@@ -146,7 +146,7 @@ const projects = [
       { src: '/projects/flygkraft/img3.png', label: 'Font Pairing' },
     ],
     downloadLink: {
-      url: '/projects/flygkraft/Flygkraft-Style-Guide.pdf',
+      url: '/projects/flygkraft/Flying-Card-Style-Guide-Compress.pdf',
       label: 'Link to Download Brand Guide',
     },
   },

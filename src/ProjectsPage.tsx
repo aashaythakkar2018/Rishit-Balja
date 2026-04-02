@@ -341,13 +341,15 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
               </div>
               <div className="max-w-[400px]">
                 <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
-                {('pdfLink' in proj) && proj.pdfLink && (
+                {proj.id === '04' && (
                   <a 
-                    href={(proj.pdfLink as { url: string; label: string }).url} 
+                    href="/projects/flygkraft/Flygkraft-Style-Guide.pdf"
                     download
-                    className="inline-block mt-4 text-[var(--txt)] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 text-[#080808] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em] cursor-pointer"
                   >
-                    {(proj.pdfLink as { url: string; label: string }).label}
+                    Link to Download the Style Guide
                   </a>
                 )}
               </div>

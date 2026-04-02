@@ -1,4 +1,3 @@
-// Build update: 2026-04-02 12:40
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -142,14 +141,10 @@ const projects = [
     ],
     labeledImages: [
       { src: '/projects/flygkraft/cover.png', label: 'Brand Guide Cover' },
-      { src: '/projects/flygkraft/img1.png', label: 'Logo inspiration' },
+      { src: '/projects/flygkraft/img1.png', label: 'Logo Inspiration' },
       { src: '/projects/flygkraft/img2.png', label: 'Design Draft' },
-      { src: '/projects/flygkraft/img3.png', label: 'Font pairing' },
+      { src: '/projects/flygkraft/img3.png', label: 'Font Pairing' },
     ],
-    pdfLink: {
-      label: 'Link to Download the Style Guide',
-      url: '/projects/flygkraft/Flygkraft-Style-Guide.pdf',
-    },
   },
 ];
 
@@ -340,18 +335,7 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
                   <em className="not-italic text-[var(--txt3)] [-webkit-text-stroke:1px_rgba(8,8,8,0.15)]">{proj.subtitle}</em>
                 </h2>
               </div>
-              <div className="max-w-[400px]">
-                <p className="text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
-                {(proj.id === '04') && (
-                  <a 
-                    href="/projects/flygkraft/Flygkraft-Style-Guide.pdf" 
-                    download
-                    className="inline-block mt-4 text-[var(--txt)] hover:text-[var(--acc)] underline decoration-transparent hover:decoration-[var(--acc)] transition-all duration-300 text-[13px] font-medium tracking-[0.05em]"
-                  >
-                    Link to Download the Style Guide
-                  </a>
-                )}
-              </div>
+              <p className="max-w-[400px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
             </motion.div>
 
             {/* Challenge + What I Did + Impact */}

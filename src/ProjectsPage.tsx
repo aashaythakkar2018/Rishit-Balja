@@ -145,6 +145,10 @@ const projects = [
       { src: '/projects/flygkraft/img2.png', label: 'Design Draft' },
       { src: '/projects/flygkraft/img3.png', label: 'Font Pairing' },
     ],
+    downloadLink: {
+      url: '/projects/flygkraft/Flygkraft-Style-Guide.pdf',
+      label: 'Link to Download Brand Guide',
+    },
   },
 ];
 
@@ -335,7 +339,24 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
                   <em className="not-italic text-[var(--txt3)] [-webkit-text-stroke:1px_rgba(8,8,8,0.15)]">{proj.subtitle}</em>
                 </h2>
               </div>
-              <p className="max-w-[400px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
+              <div>
+                <p className="max-w-[400px] text-[13px] font-light text-[var(--txt2)] leading-[1.85]">{proj.tagline}</p>
+                {proj.downloadLink && (
+                  <a 
+                    href={proj.downloadLink.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 font-[var(--font-syne)] text-[11px] font-bold tracking-[0.18em] uppercase text-[var(--acc)] hover:opacity-80 transition-opacity"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    {proj.downloadLink.label}
+                  </a>
+                )}
+              </div>
             </motion.div>
 
             {/* Challenge + What I Did + Impact */}

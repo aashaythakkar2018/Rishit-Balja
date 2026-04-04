@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 interface ImageComparisonSliderProps {
   beforeImage: string;
@@ -76,8 +76,8 @@ export default function ImageComparisonSlider({
           <span
             className="font-[var(--font-syne)] text-[10px] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-[2px] transition-all duration-300"
             style={{
-              background: position > 15 ? 'var(--bdr)' : 'var(--acc)',
-              color: position > 15 ? 'var(--txt3)' : '#080808',
+              background: position > 85 ? 'var(--acc)' : 'var(--bdr)',
+              color: position > 85 ? '#080808' : 'var(--txt3)',
             }}
           >
             {beforeLabel}
@@ -90,8 +90,8 @@ export default function ImageComparisonSlider({
           <span
             className="font-[var(--font-syne)] text-[10px] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-[2px] transition-all duration-300"
             style={{
-              background: position < 85 ? 'var(--bdr)' : 'var(--acc)',
-              color: position < 85 ? 'var(--txt3)' : '#080808',
+              background: position < 15 ? 'var(--acc)' : 'var(--bdr)',
+              color: position < 15 ? '#080808' : 'var(--txt3)',
             }}
           >
             {afterLabel}
@@ -112,29 +112,26 @@ export default function ImageComparisonSlider({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        {/* BEFORE image (old UI) — full width, clipped on the right */}
+        {/* AFTER image (new UI) — base layer */}
         <img
-          src={beforeImage}
-          alt={beforeLabel}
+          src={afterImage}
+          alt={afterLabel}
           draggable={false}
           className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none"
         />
 
-        {/* AFTER image (new UI) — revealed from left using clip */}
+        {/* BEFORE image (old UI) — overlay, revealed and clipped from right */}
         <div
           className="absolute inset-0 overflow-hidden pointer-events-none"
           style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
         >
           <img
-            src={afterImage}
-            alt={afterLabel}
+            src={beforeImage}
+            alt={beforeLabel}
             draggable={false}
             className="absolute inset-0 w-full h-full object-cover object-top"
           />
-          {/* Removed inner after label */}
         </div>
-
-        {/* Removed inner before label */}
 
         {/* Divider line */}
         <div

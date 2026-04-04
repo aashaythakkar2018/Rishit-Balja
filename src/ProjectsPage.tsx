@@ -109,7 +109,7 @@ const projects = [
     ],
     compareImages: {
       before: '/projects/tachograph-service/img2.png',
-      after: '/projects/tachograph-service/img1.png',
+      after: '/projects/tachograph-service/cover.png',
       beforeLabel: 'Old UI',
       afterLabel: 'New UI',
     },

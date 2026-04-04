@@ -107,12 +107,6 @@ const projects = [
       { src: '/projects/tachograph-service/img2.png', label: 'Old UI' },
       { src: '/projects/tachograph-service/img3.png', label: 'Optimisation of Data' },
     ],
-    compareImages: {
-      before: '/projects/tachograph-service/img2.png',
-      after: '/projects/tachograph-service/cover.png',
-      beforeLabel: 'Old UI',
-      afterLabel: 'New UI',
-    },
   },
   {
     id: '04',

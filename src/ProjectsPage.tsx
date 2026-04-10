@@ -214,6 +214,15 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
         
         {/* Desktop Links */}
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
+          <li>
+            <button
+              onClick={() => onBack('home')}
+              className="flex items-center gap-1.5 font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] hover:text-[var(--txt)] transition-colors duration-250 cursor-pointer bg-transparent border-none p-0 pr-6 border-r border-[var(--bdr)]"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+              Back
+            </button>
+          </li>
           <li><button onClick={() => onBack('contact')} className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Contact</button></li>
           <li><button onClick={() => onBack('projects')} className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
           <li className="relative nav-cv z-[5000]">
@@ -277,6 +286,15 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
             className="fixed inset-0 bg-[rgba(246,247,249,0.92)] backdrop-blur-xl z-[550] flex flex-col items-center justify-center p-12 md:hidden"
           >
             <ul className="flex flex-col items-center gap-8 list-none p-0 text-center">
+              <li>
+                <button
+                  onClick={() => { onBack('home'); setIsMobileMenuOpen(false); }}
+                  className="flex items-center gap-2 font-[var(--font-swifter)] text-[22px] font-light tracking-tight text-[var(--txt3)] bg-transparent border-none"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                  Back
+                </button>
+              </li>
               <li><button onClick={() => { onBack('contact'); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Contact</button></li>
               <li><button onClick={() => { onBack('projects'); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Projects</button></li>
               <li>
@@ -328,7 +346,7 @@ export default function ProjectsPage({ activeProjectId, onBack }: { activeProjec
                 <div className="font-[var(--font-syne)] text-[15px] font-medium tracking-[0.16em] text-[var(--acc)] mb-4">
                   {proj.id} · {proj.type} · {proj.year}
                 </div>
-                <h2 className="font-[var(--font-swifter)] font-light text-[clamp(42px,6vw,80px)] leading-[0.88] tracking-[-0.02em] text-[var(--txt)]">
+                <h2 className="font-[var(--font-swifter)] font-light text-[clamp(42px,6vw,80px)] leading-[1] tracking-[-0.02em] text-[var(--txt)]">
                   {proj.title}<br />
                   <em className="not-italic text-[var(--txt3)] [-webkit-text-stroke:1px_rgba(8,8,8,0.15)]">{proj.subtitle}</em>
                 </h2>

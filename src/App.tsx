@@ -17,6 +17,7 @@ export default function App() {
   const [preloadingProgress, setPreloadingProgress] = useState(0);
 
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const [showProjects, setShowProjects] = useState(false);
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const [isCVDropdownOpen, setIsCVDropdownOpen] = useState(false);
@@ -118,6 +119,7 @@ export default function App() {
       const h = document.documentElement;
       const progress = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
       setScrollProgress(progress);
+      setHasScrolled(h.scrollTop > 80);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -167,7 +169,7 @@ export default function App() {
       ScrollTrigger.getAll().forEach((t) => t.kill());
       revObs.disconnect();
     };
-  }, [isLoaded]);
+  }, [isLoaded, showProjects]);
 
   // Horizontal Scroll and Tilt
 
@@ -206,7 +208,7 @@ export default function App() {
       featOuter.removeEventListener('mouseleave', handleMouseLeave);
       featOuter.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, []);
+  }, [showProjects]);
 
   // Smooth Scroll
   useEffect(() => {
@@ -348,6 +350,17 @@ export default function App() {
         
         {/* Desktop Links */}
         <ul className="nav-links hidden md:flex items-center gap-10 list-none">
+          {hasScrolled && (
+            <li>
+              <button
+                onClick={() => gsap.to(window, { duration: 0.8, scrollTo: { y: 0, autoKill: false }, ease: 'power3.out' })}
+                className="flex items-center gap-1.5 font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] hover:text-[var(--txt)] transition-colors duration-250 cursor-pointer bg-transparent border-none p-0 pr-6 border-r border-[var(--bdr)]"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                Back
+              </button>
+            </li>
+          )}
           <li><a href="#contact" className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full">Contact</a></li>
           <li><button onClick={() => setShowProjects(true)} className="font-[var(--font-syne)] text-[11px] font-medium tracking-[0.14em] text-[var(--txt2)] relative transition-colors duration-250 hover:text-[var(--txt)] after:content-[''] after:absolute after:bottom-[-3px] after:left-0 after:w-0 after:height-[1px] after:bg-[var(--acc)] after:transition-[width] after:duration-400 hover:after:w-full cursor-pointer bg-transparent border-none p-0">Projects</button></li>
           <li className="relative nav-cv z-[5000]">
@@ -411,6 +424,17 @@ export default function App() {
             className="fixed inset-0 bg-[rgba(246,247,249,0.92)] backdrop-blur-xl z-[550] flex flex-col items-center justify-center p-12 md:hidden"
           >
             <ul className="flex flex-col items-center gap-8 list-none p-0 text-center">
+              {hasScrolled && (
+                <li>
+                  <button
+                    onClick={() => { setIsMobileMenuOpen(false); gsap.to(window, { duration: 0.8, scrollTo: { y: 0, autoKill: false }, ease: 'power3.out' }); }}
+                    className="flex items-center gap-2 font-[var(--font-swifter)] text-[22px] font-light tracking-tight text-[var(--txt3)] bg-transparent border-none"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                    Back to Top
+                  </button>
+                </li>
+              )}
               <li><a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)]">Contact</a></li>
               <li><button onClick={() => { setShowProjects(true); setIsMobileMenuOpen(false); }} className="font-[var(--font-swifter)] text-[32px] font-light tracking-tight text-[var(--txt)] bg-transparent border-none">Projects</button></li>
               <li>
